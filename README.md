@@ -1,6 +1,6 @@
 # 🚚 Delivery Manager – Application de Gestion de Commandes & Livraisons
 
-**Projet de fin d’année**
+**Projet de fin d’étude**
 
 Delivery Manager est une application web conçue pour simplifier et optimiser le processus de préparation de commandes au sein des entreprises, tout en offrant aux livreurs un outil dédié pour gérer efficacement leurs tournées.
 
