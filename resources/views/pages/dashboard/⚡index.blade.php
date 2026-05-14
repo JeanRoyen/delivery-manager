@@ -8,5 +8,4 @@ new class extends Component {
 ?>
 
 <div>
-    <p>Dashboard</p>
 </div>
