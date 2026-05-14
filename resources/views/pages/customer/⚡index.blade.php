@@ -13,9 +13,10 @@ new class extends Component {
     {
         return Customer::query()
             ->when($this->search, function ($query) {
-                $query->where('first_name', 'like', "%{$this->search}%")
-                    ->orWhere('last_name', 'like', "%{$this->search}%")
-                    ->orWhere('email', 'like', "%{$this->search}%");
+                $query->where('name', 'like', "%{$this->search}%")
+                    ->orWhere('email', 'like', "%{$this->search}%")
+                    ->orWhere('phone', 'like', "%{$this->search}%")
+                    ->orWhere('address', 'like', "%{$this->search}%");
             })
             ->get();
     }
@@ -45,7 +46,7 @@ new class extends Component {
                         {{ $customer->id }}
                     </flux:table.cell>
                     <flux:table.cell>
-                        {{ Str::title($customer->first_name . ' ' . $customer->last_name) }}
+                        {{ Str::title($customer->name) }}
                     </flux:table.cell>
                     <flux:table.cell>
                         {{ $customer->address }}
