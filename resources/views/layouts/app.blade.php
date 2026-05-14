@@ -9,6 +9,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @livewireStyles
+    @fluxAppearance
+
 </head>
 <body>
 <header>
@@ -21,5 +23,6 @@
 
 </footer>
 @livewireScripts
+@fluxScripts
 </body>
 </html>
