@@ -28,13 +28,12 @@ new class extends Component {
 ?>
 
 <div>
-    <input type="search" wire:model.live="search">
-
+    <flux:input icon="magnifying-glass" placeholder="Search..." wire:model.live.debounce.300ms="search"/>
     <flux:table>
         <flux:table.columns>
             <flux:table.column>Identifiant</flux:table.column>
             <flux:table.column>Nom du client</flux:table.column>
-            <flux:table.column>Status</flux:table.column>
+            <flux:table.column>Adresse</flux:table.column>
             <flux:table.column>Adresse mail</flux:table.column>
             <flux:table.column>N° de téléphone</flux:table.column>
             <flux:table.column>Actions</flux:table.column>
@@ -49,7 +48,7 @@ new class extends Component {
                         {{ Str::title($customer->first_name . ' ' . $customer->last_name) }}
                     </flux:table.cell>
                     <flux:table.cell>
-                        OK
+                        {{ $customer->address }}
                     </flux:table.cell>
                     <flux:table.cell>
                         {{ $customer->email }}
