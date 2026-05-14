@@ -3,7 +3,7 @@
     <title>
         Formulaire de connexion
     </title>
-    <x-form.input-with-label type="email" name="email" label="Email" />
-    <x-form.input-with-label type="password" name="password" label="Mot de passe" />
+    <flux:input wire:model="email" label="Email" />
+    <flux:input wire:model="password" label="Mot de passe" viewable/>
     <button type="submit">Connexion</button>
 </form>
