@@ -21,6 +21,7 @@ new class extends Component {
             ->get();
     }
 
+
     public function delete(Customer $customer): void
     {
         $customer->delete();
@@ -29,7 +30,23 @@ new class extends Component {
 ?>
 
 <div>
-    <flux:input icon="magnifying-glass" placeholder="Search..." wire:model.live.debounce.300ms="search"/>
+    <div class="flex items-center justify-between gap-10">
+        <flux:input
+            icon="magnifying-glass"
+            placeholder="Search..."
+            wire:model.live.debounce.300ms="search"
+        />
+
+        <flux:button
+            variant="primary"
+            color="green"
+            icon="plus"
+            href="{{ route('customer.create') }}"
+            wire:navigate
+        >
+            Ajouter un client
+        </flux:button>
+    </div>
     <flux:table>
         <flux:table.columns>
             <flux:table.column>Identifiant</flux:table.column>
