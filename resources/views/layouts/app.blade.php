@@ -57,8 +57,15 @@
 
     <flux:switch x-data x-model="$flux.dark" label="Dark mode" />
 
-    <flux:profile :name="Str::title(auth()->user()->first_name . ' ' . auth()->user()->last_name)"
-                  :chevron="false"/>
+    <flux:dropdown>
+        <flux:profile :name="Str::title(auth()->user()->first_name . ' ' . auth()->user()->last_name)"/>
+
+        <flux:navmenu>
+            @foreach (language()->allowed() as $code => $name)
+                <flux:navmenu.item href="{{ language()->back($code) }}">{{ $name }}</flux:navmenu.item>
+            @endforeach
+        </flux:navmenu>
+    </flux:dropdown>
     <form action="{{ route('logout') }}" method="post">
         @csrf
         <flux:button type="submit" class="w-full" variant="danger" icon="arrow-right-start-on-rectangle">
