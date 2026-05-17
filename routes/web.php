@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'language'])->group(function () {
     Route::livewire('/', 'pages::dashboard.index')->name('dashboard.index');
     Route::livewire('/customer', 'pages::customer.index')->name('customer.index');
     Route::livewire('/customer/create', 'pages::customer.create')->name('customer.create');
