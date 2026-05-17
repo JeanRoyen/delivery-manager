@@ -1,15 +1,23 @@
 <?php
 
 use App\Models\Customer;
-use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
+
 new class extends Component {
+    use Livewire\WithPagination;
+
     public string $search = '';
 
+    public function updatedSearch($page): void
+    {
+        $this->resetPage();
+    }
+
     #[Computed]
-    public function customers(): Collection
+    public function customers(): LengthAwarePaginator
     {
         return Customer::query()
             ->when($this->search, function ($query) {
@@ -18,7 +26,7 @@ new class extends Component {
                     ->orWhere('phone', 'like', "%{$this->search}%")
                     ->orWhere('address', 'like', "%{$this->search}%");
             })
-            ->get();
+            ->paginate(10);
     }
 
 
@@ -31,7 +39,6 @@ new class extends Component {
 
 <div>
     <x-general.section_with_title title="Liste des clients">
-
         <div class="flex items-center justify-between gap-10">
             <flux:input
                 icon="magnifying-glass"
@@ -49,7 +56,7 @@ new class extends Component {
                 Ajouter un client
             </flux:button>
         </div>
-        <flux:table>
+        <flux:table :paginate="$this->customers">
             <flux:table.columns>
                 <flux:table.column>Identifiant</flux:table.column>
                 <flux:table.column>Nom du client</flux:table.column>
