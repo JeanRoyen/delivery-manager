@@ -52,11 +52,11 @@ new class extends Component {
 ?>
 
 <div>
-    <x-general.section_with_title title="Liste des clients">
+    <x-general.section_with_title title="{{ __('customer.customer_list') }}">
         <div class="flex items-center justify-between gap-10">
             <flux:input
                 icon="magnifying-glass"
-                placeholder="Search..."
+                placeholder="{{ __('customer.search_placeholder') }}"
                 wire:model.live.debounce.300ms="search"
             />
 
@@ -67,19 +67,19 @@ new class extends Component {
                 href="{{ route('customer.create') }}"
                 wire:navigate
             >
-                Ajouter un client
+                {{ __('customer.add_customer') }}
             </flux:button>
         </div>
         <flux:table :paginate="$this->customers">
             <flux:table.columns>
-                <flux:table.column>Identifiant</flux:table.column>
+                <flux:table.column>{{ __('customer.id') }}</flux:table.column>
                 <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection"
-                                   wire:click="sort('name')">Nom du client
+                                   wire:click="sort('name')">{{ __('customer.customer_name') }}
                 </flux:table.column>
-                <flux:table.column>Adresse</flux:table.column>
-                <flux:table.column>Adresse mail</flux:table.column>
-                <flux:table.column>N° de téléphone</flux:table.column>
-                <flux:table.column>Actions</flux:table.column>
+                <flux:table.column>{{ __('customer.address') }}</flux:table.column>
+                <flux:table.column>{{ __('customer.email') }}</flux:table.column>
+                <flux:table.column>{{ __('customer.phone') }}</flux:table.column>
+                <flux:table.column>{{ __('customer.actions') }}</flux:table.column>
             </flux:table.columns>
             <flux:table.rows>
                 @foreach($this->customers as $customer)
@@ -108,7 +108,8 @@ new class extends Component {
                                     inset="top bottom"
                                 />
                                 <flux:menu>
-                                    <flux:menu.item icon="trash" wire:click="delete({{ $customer->id }})">Supprimer
+                                    <flux:menu.item icon="trash" wire:click="delete({{ $customer->id }})">
+                                        {{ __('customer.delete') }}
                                     </flux:menu.item>
                                 </flux:menu>
                             </flux:dropdown>
