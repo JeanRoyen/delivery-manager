@@ -37,21 +37,20 @@
             Clients
         </flux:sidebar.item>
 
-        <flux:sidebar.item icon="cake" href="{{ route('order.index') }}">
-            Commandes
-        </flux:sidebar.item>
-
-        <flux:sidebar.item icon="cake" href="{{ route('preparation.index') }}">
-            Préparation
-        </flux:sidebar.item>
-
-        <flux:sidebar.item icon="cake" href="{{ route('delivery.index') }}">
-            Livraisons
-        </flux:sidebar.item>
-
-        <flux:sidebar.item icon="cake" href="{{ route('historic.index') }}">
-            Historique
-        </flux:sidebar.item>
+        <flux:sidebar.group expandable icon="cube" heading="Gestion des commandes" class="grid">
+            <flux:sidebar.item href="{{ route('order.index') }}">
+                Commandes
+            </flux:sidebar.item>
+            <flux:sidebar.item href="{{ route('preparation.index') }}">
+                Préparation
+            </flux:sidebar.item>
+            <flux:sidebar.item href="{{ route('delivery.index') }}">
+                Livraisons
+            </flux:sidebar.item>
+            <flux:sidebar.item href="{{ route('historic.index') }}">
+                Historique
+            </flux:sidebar.item>
+        </flux:sidebar.group>
     </flux:sidebar.nav>
 
     <flux:sidebar.spacer />
