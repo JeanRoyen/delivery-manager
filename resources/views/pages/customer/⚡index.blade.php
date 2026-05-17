@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Customer;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
@@ -10,14 +10,27 @@ new class extends Component {
     use Livewire\WithPagination;
 
     public string $search = '';
+    public string $sortBy = 'id';
+
+    public string $sortDirection = 'asc';
 
     public function updatedSearch($page): void
     {
         $this->resetPage();
     }
 
+    public function sort($column): void
+    {
+        if ($this->sortBy === $column) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortBy = $column;
+            $this->sortDirection = 'asc';
+        }
+    }
+
     #[Computed]
-    public function customers(): LengthAwarePaginator
+    public function customers(): Paginator
     {
         return Customer::query()
             ->when($this->search, function ($query) {
@@ -26,7 +39,8 @@ new class extends Component {
                     ->orWhere('phone', 'like', "%{$this->search}%")
                     ->orWhere('address', 'like', "%{$this->search}%");
             })
-            ->paginate(10);
+            ->orderBy($this->sortBy, $this->sortDirection)
+            ->simplePaginate(10);
     }
 
 
@@ -59,7 +73,9 @@ new class extends Component {
         <flux:table :paginate="$this->customers">
             <flux:table.columns>
                 <flux:table.column>Identifiant</flux:table.column>
-                <flux:table.column>Nom du client</flux:table.column>
+                <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection"
+                                   wire:click="sort('name')">Nom du client
+                </flux:table.column>
                 <flux:table.column>Adresse</flux:table.column>
                 <flux:table.column>Adresse mail</flux:table.column>
                 <flux:table.column>N° de téléphone</flux:table.column>
