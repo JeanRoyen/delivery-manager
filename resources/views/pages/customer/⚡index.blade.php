@@ -30,66 +30,69 @@ new class extends Component {
 ?>
 
 <div>
-    <div class="flex items-center justify-between gap-10">
-        <flux:input
-            icon="magnifying-glass"
-            placeholder="Search..."
-            wire:model.live.debounce.300ms="search"
-        />
+    <x-general.section_with_title title="Liste des clients">
 
-        <flux:button
-            variant="primary"
-            color="green"
-            icon="plus"
-            href="{{ route('customer.create') }}"
-            wire:navigate
-        >
-            Ajouter un client
-        </flux:button>
-    </div>
-    <flux:table>
-        <flux:table.columns>
-            <flux:table.column>Identifiant</flux:table.column>
-            <flux:table.column>Nom du client</flux:table.column>
-            <flux:table.column>Adresse</flux:table.column>
-            <flux:table.column>Adresse mail</flux:table.column>
-            <flux:table.column>N° de téléphone</flux:table.column>
-            <flux:table.column>Actions</flux:table.column>
-        </flux:table.columns>
-        <flux:table.rows>
-            @foreach($this->customers as $customer)
-                <flux:table.row :key="$customer->id">
-                    <flux:table.cell>
-                        {{ $customer->id }}
-                    </flux:table.cell>
-                    <flux:table.cell>
-                        {{ Str::title($customer->name) }}
-                    </flux:table.cell>
-                    <flux:table.cell>
-                        {{ $customer->address }}
-                    </flux:table.cell>
-                    <flux:table.cell>
-                        {{ $customer->email }}
-                    </flux:table.cell>
-                    <flux:table.cell>
-                        {{ $customer->phone }}
-                    </flux:table.cell>
-                    <flux:table.cell>
-                        <flux:dropdown>
-                            <flux:button
-                                variant="ghost"
-                                size="sm"
-                                icon="ellipsis-vertical"
-                                inset="top bottom"
-                            />
-                            <flux:menu>
-                                <flux:menu.item icon="trash" wire:click="delete({{ $customer->id }})">Supprimer
-                                </flux:menu.item>
-                            </flux:menu>
-                        </flux:dropdown>
-                    </flux:table.cell>
-                </flux:table.row>
-            @endforeach
-        </flux:table.rows>
-    </flux:table>
+        <div class="flex items-center justify-between gap-10">
+            <flux:input
+                icon="magnifying-glass"
+                placeholder="Search..."
+                wire:model.live.debounce.300ms="search"
+            />
+
+            <flux:button
+                variant="primary"
+                color="green"
+                icon="plus"
+                href="{{ route('customer.create') }}"
+                wire:navigate
+            >
+                Ajouter un client
+            </flux:button>
+        </div>
+        <flux:table>
+            <flux:table.columns>
+                <flux:table.column>Identifiant</flux:table.column>
+                <flux:table.column>Nom du client</flux:table.column>
+                <flux:table.column>Adresse</flux:table.column>
+                <flux:table.column>Adresse mail</flux:table.column>
+                <flux:table.column>N° de téléphone</flux:table.column>
+                <flux:table.column>Actions</flux:table.column>
+            </flux:table.columns>
+            <flux:table.rows>
+                @foreach($this->customers as $customer)
+                    <flux:table.row :key="$customer->id">
+                        <flux:table.cell>
+                            {{ $customer->id }}
+                        </flux:table.cell>
+                        <flux:table.cell>
+                            {{ Str::title($customer->name) }}
+                        </flux:table.cell>
+                        <flux:table.cell>
+                            {{ $customer->address }}
+                        </flux:table.cell>
+                        <flux:table.cell>
+                            {{ $customer->email }}
+                        </flux:table.cell>
+                        <flux:table.cell>
+                            {{ $customer->phone }}
+                        </flux:table.cell>
+                        <flux:table.cell>
+                            <flux:dropdown>
+                                <flux:button
+                                    variant="ghost"
+                                    size="sm"
+                                    icon="ellipsis-vertical"
+                                    inset="top bottom"
+                                />
+                                <flux:menu>
+                                    <flux:menu.item icon="trash" wire:click="delete({{ $customer->id }})">Supprimer
+                                    </flux:menu.item>
+                                </flux:menu>
+                            </flux:dropdown>
+                        </flux:table.cell>
+                    </flux:table.row>
+                @endforeach
+            </flux:table.rows>
+        </flux:table>
+    </x-general.section_with_title>
 </div>
