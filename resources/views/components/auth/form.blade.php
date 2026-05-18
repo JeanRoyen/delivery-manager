@@ -1,9 +1,6 @@
-<form action="{{ route('login.store') }}" method="post">
+<form action="{{ route('login.store') }}" method="post" class="space-y-4">
     @csrf
-    <title>
-        Formulaire de connexion
-    </title>
-    <flux:input wire:model="email" label="Email" />
-    <flux:input wire:model="password" label="Mot de passe" viewable/>
-    <button type="submit">Connexion</button>
+    <flux:input wire:model="email" label="{{ __('auth_form.email') }}" />
+    <flux:input wire:model="password" label="{{ __('auth_form.password') }}" viewable/>
+    <flux:button variant="primary" class="w-full mt-4" type="submit">{{ __('auth_form.login') }}</flux:button>
 </form>
