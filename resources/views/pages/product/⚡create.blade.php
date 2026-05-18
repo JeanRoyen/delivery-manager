@@ -24,8 +24,8 @@ new class extends Component {
     <x-general.section_with_title title="{{ __('form.product_create_title') }}">
         <form wire:submit.prevent="save" class="space-y-4">
             <flux:input type="text" wire:model="form.name" label="{{ __('form.name') }}*" />
-            <flux:input type="email" wire:model="form.description" label="{{ __('form.description') }}" />
-            <flux:input type="text" wire:model="form.price" label="{{ __('form.price') }}*" description="Exemple de format (10.00)" />
+            <flux:input type="text" wire:model="form.description" label="{{ __('form.description') }}" />
+            <flux:input type="text" wire:model="form.price" label="{{ __('form.price') }}*" description="{{ __('form.price_description') }}" />
 
             <flux:button variant="primary" color="green" type="submit" icon="plus" class="w-full mt-6 py-6">
                 {{ __('form.submit_product') }}
