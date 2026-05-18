@@ -47,7 +47,7 @@ new class extends Component {
         }
 
         $product->delete();
-        Flux::toast(__('product.toast'));
+        Flux::toast(__('toast.changes'));
     }
 };
 ?>

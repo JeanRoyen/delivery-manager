@@ -51,6 +51,7 @@ new class extends Component {
         }
 
         $customer->delete();
+        Flux::toast(__('toast.changes'));
     }
 };
 ?>

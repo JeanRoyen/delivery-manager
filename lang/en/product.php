@@ -11,6 +11,4 @@ return [
     'actions' => 'Actions',
 
     'delete' => 'Delete',
-
-    'toast' => 'Your changes have been saved',
 ];
