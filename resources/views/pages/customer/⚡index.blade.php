@@ -77,7 +77,8 @@ new class extends Component {
         </div>
         <flux:table :paginate="$this->customers">
             <flux:table.columns>
-                <flux:table.column>{{ __('customer.id') }}</flux:table.column>
+                <flux:table.column sortable :sorted="$sortBy === 'id'" :direction="$sortDirection"
+                                   wire:click="sort('id')">ID</flux:table.column>
                 <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection"
                                    wire:click="sort('name')">{{ __('customer.customer_name') }}
                 </flux:table.column>
