@@ -19,17 +19,16 @@ new class extends Component {
 ?>
 
 <div>
-    <section>
-        <h2 class="flex justify-center text-3xl mb-6">Création d'un nouveau client</h2>
-        <form wire:submit.prevent="save">
-            <flux:input type="text" wire:model="form.name" label="Nom*" />
-            <flux:input type="email" wire:model="form.email" label="Email*" />
-            <flux:input type="text" wire:model="form.address" label="Adresse*" />
-            <flux:input type="phone" wire:model="form.phone" label="N° de téléphone" />
+     <x-general.section_with_title title="{{ __('form.customer_create_title') }}">
+         <form wire:submit.prevent="save" class="space-y-4">
+             <flux:input type="text" wire:model="form.name" label="{{ __('form.name') }}*" />
+             <flux:input type="email" wire:model="form.email" label="{{ __('form.email') }}*" />
+             <flux:input type="text" wire:model="form.address" label="{{ __('form.address') }}*" />
+             <flux:input type="phone" wire:model="form.phone" label="{{ __('form.phone') }}" />
 
-            <flux:button variant="primary" color="green" type="submit" icon="plus" class="w-full mt-10 py-6">
-                Enregister le nouveau client
-            </flux:button>
-        </form>
-    </section>
+             <flux:button variant="primary" color="green" type="submit" icon="plus" class="w-full mt-10 py-6">
+                 {{ __('form.submit_customer') }}
+             </flux:button>
+         </form>
+     </x-general.section_with_title>
 </div>
