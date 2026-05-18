@@ -11,4 +11,6 @@ return [
     'actions' => 'Actions',
 
     'delete' => 'Delete',
+
+    'add_product' => 'Add product',
 ];

@@ -11,4 +11,7 @@ return [
     'actions' => 'Acties',
 
     'delete' => 'Verwijderen',
+
+    'add_product' => 'Product toevoegen',
+
 ];
