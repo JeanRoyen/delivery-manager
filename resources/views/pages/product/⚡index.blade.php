@@ -64,7 +64,9 @@ new class extends Component {
         <flux:table :paginate="$this->products">
             <flux:table.columns>
                 <flux:table.column sortable :sorted="$sortBy === 'id'" :direction="$sortDirection"
-                                   wire:click="sort('id')">ID</flux:table.column>
+                                   wire:click="sort('id')">
+                    ID
+                </flux:table.column>
                 <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection"
                                    wire:click="sort('name')">
                     {{ __('product.name') }}
@@ -88,7 +90,7 @@ new class extends Component {
                             {{ $product->description }}
                         </flux:table.cell>
                         <flux:table.cell>
-                            {{ $product->price }}
+                            {{ money($product->price, 'EUR')}}
                         </flux:table.cell>
                         @if(Auth::user()->isAdmin)
                             <flux:table.cell>
