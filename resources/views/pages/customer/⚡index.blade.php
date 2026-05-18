@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Customer;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
@@ -30,7 +30,7 @@ new class extends Component {
     }
 
     #[Computed]
-    public function customers(): Paginator
+    public function customers(): LengthAwarePaginator
     {
         return Customer::query()
             ->when($this->search, function ($query) {
@@ -40,12 +40,16 @@ new class extends Component {
                     ->orWhere('address', 'like', "%{$this->search}%");
             })
             ->orderBy($this->sortBy, $this->sortDirection)
-            ->simplePaginate(10);
+            ->paginate(10);
     }
 
 
     public function delete(Customer $customer): void
     {
+        if (!Auth::user()->isAdmin) {
+            abort(403);
+        }
+
         $customer->delete();
     }
 };
@@ -79,7 +83,9 @@ new class extends Component {
                 <flux:table.column>{{ __('customer.address') }}</flux:table.column>
                 <flux:table.column>{{ __('customer.email') }}</flux:table.column>
                 <flux:table.column>{{ __('customer.phone') }}</flux:table.column>
-                <flux:table.column>{{ __('customer.actions') }}</flux:table.column>
+                @if(Auth::user()->isAdmin)
+                    <flux:table.column>{{ __('customer.actions') }}</flux:table.column>
+                @endif
             </flux:table.columns>
             <flux:table.rows>
                 @foreach($this->customers as $customer)
@@ -99,21 +105,23 @@ new class extends Component {
                         <flux:table.cell>
                             {{ $customer->phone }}
                         </flux:table.cell>
-                        <flux:table.cell>
-                            <flux:dropdown>
-                                <flux:button
-                                    variant="ghost"
-                                    size="sm"
-                                    icon="ellipsis-vertical"
-                                    inset="top bottom"
-                                />
-                                <flux:menu>
-                                    <flux:menu.item icon="trash" wire:click="delete({{ $customer->id }})">
-                                        {{ __('customer.delete') }}
-                                    </flux:menu.item>
-                                </flux:menu>
-                            </flux:dropdown>
-                        </flux:table.cell>
+                        @if(Auth::user()->isAdmin)
+                            <flux:table.cell>
+                                <flux:dropdown>
+                                    <flux:button
+                                        variant="ghost"
+                                        size="sm"
+                                        icon="ellipsis-vertical"
+                                        inset="top bottom"
+                                    />
+                                    <flux:menu>
+                                        <flux:menu.item icon="trash" wire:click="delete({{ $customer->id }})">
+                                            {{ __('customer.delete') }}
+                                        </flux:menu.item>
+                                    </flux:menu>
+                                </flux:dropdown>
+                            </flux:table.cell>
+                        @endif
                     </flux:table.row>
                 @endforeach
             </flux:table.rows>
