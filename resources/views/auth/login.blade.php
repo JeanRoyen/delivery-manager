@@ -23,6 +23,14 @@
             <x-auth.form/>
         </div>
     </flux:card>
+    <flux:dropdown>
+        <flux:button icon:trailing="chevron-down">{{ language()->getName() }}</flux:button>
+        <flux:navmenu>
+            @foreach (language()->allowed() as $code => $name)
+                <flux:navmenu.item href="{{ language()->back($code) }}">{{ $name }}</flux:navmenu.item>
+            @endforeach
+        </flux:navmenu>
+    </flux:dropdown>
 </div>
 <div>
     <img src="{{ asset('img/login_image.webp') }}" alt="{{ __('auth_form.delivery_driver_alt') }}">
