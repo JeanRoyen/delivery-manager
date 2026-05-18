@@ -1,1 +1,36 @@
-<x-auth.form/>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ $title ?? config('app.name') }}</title>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @livewireStyles
+    @fluxAppearance
+
+</head>
+<body class="bg-white dark:bg-zinc-800 flex ">
+<div>
+    <h2>Delivery Manager</h2>
+    <flux:card class="space-y-6">
+        <div>
+            <flux:heading size="xl">{{ __('auth_form.login_title') }}</flux:heading>
+        </div>
+        <div>
+            <x-auth.form/>
+        </div>
+    </flux:card>
+</div>
+<div>
+    <img src="{{ asset('img/login_image.webp') }}" alt="{{ __('auth_form.delivery_driver_alt') }}">
+</div>
+
+@livewireScripts
+@fluxScripts
+</body>
+</html>
+
+
