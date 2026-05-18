@@ -11,4 +11,6 @@ return [
     'actions' => 'Acties',
 
     'delete' => 'Verwijderen',
+
+    'toast' => 'Uw wijzigingen zijn opgeslagen',
 ];

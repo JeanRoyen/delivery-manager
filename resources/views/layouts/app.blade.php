@@ -80,6 +80,9 @@
 </flux:sidebar>
 
 <flux:main>
+    @persist('toast')
+    <flux:toast position="top end"/>
+    @endpersist
     {{ $slot }}
 </flux:main>
 <footer>

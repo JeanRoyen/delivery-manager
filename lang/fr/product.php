@@ -11,4 +11,7 @@ return [
     'actions' => 'Actions',
 
     'delete' => 'Supprimer',
+
+    'toast' => 'Vos modifications ont été enregistrées',
+
 ];
