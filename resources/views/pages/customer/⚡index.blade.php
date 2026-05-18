@@ -12,12 +12,13 @@ new class extends Component {
     public string $search = '';
     public string $sortBy = 'id';
 
-    public string $sortDirection = 'asc';
+    public string $sortDirection = 'desc';
 
     public function updatedSearch($page): void
     {
         $this->resetPage();
     }
+
 
     public function sort($column): void
     {

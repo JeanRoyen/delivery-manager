@@ -11,7 +11,7 @@ new class extends Component {
     public string $search = '';
     public string $sortBy = 'id';
 
-    public string $sortDirection = 'asc';
+    public string $sortDirection = 'desc';
 
     public function updatedSearch($page): void
     {
@@ -60,6 +60,15 @@ new class extends Component {
                 placeholder="{{ __('product.search_placeholder') }}"
                 wire:model.live.debounce.300ms="search"
             />
+            <flux:button
+                variant="primary"
+                color="green"
+                icon="plus"
+                href="{{ route('product.create') }}"
+                wire:navigate
+            >
+                {{ __('product.add_product') }}
+            </flux:button>
         </div>
         <flux:table :paginate="$this->products">
             <flux:table.columns>
