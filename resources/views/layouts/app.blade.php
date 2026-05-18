@@ -30,32 +30,36 @@
 
     <flux:sidebar.nav>
         <flux:sidebar.item icon="home" href="{{ route('dashboard.index') }}">
-            Dashboard
+            {{ __('sidebar.dashboard') }}
         </flux:sidebar.item>
 
         <flux:sidebar.item icon="user" href="{{ route('customer.index') }}">
-            Clients
+            {{ __('sidebar.customers') }}
         </flux:sidebar.item>
 
-        <flux:sidebar.group expandable icon="cube" heading="Gestion des commandes" class="grid">
+        <flux:sidebar.item icon="user" href="{{ route('product.index') }}">
+            {{ __('sidebar.products') }}
+        </flux:sidebar.item>
+
+        <flux:sidebar.group expandable icon="cube" heading="{{ __('sidebar.order_management') }}" class="grid">
             <flux:sidebar.item href="{{ route('order.index') }}">
-                Commandes
+                {{ __('sidebar.orders') }}
             </flux:sidebar.item>
             <flux:sidebar.item href="{{ route('preparation.index') }}">
-                Préparation
+                {{ __('sidebar.preparation') }}
             </flux:sidebar.item>
             <flux:sidebar.item href="{{ route('delivery.index') }}">
-                Livraisons
+                {{ __('sidebar.deliveries') }}
             </flux:sidebar.item>
             <flux:sidebar.item href="{{ route('historic.index') }}">
-                Historique
+                {{ __('sidebar.history') }}
             </flux:sidebar.item>
         </flux:sidebar.group>
     </flux:sidebar.nav>
 
     <flux:sidebar.spacer />
 
-    <flux:switch x-data x-model="$flux.dark" label="Dark mode" />
+    <flux:switch x-data x-model="$flux.dark" label="{{ __('sidebar.dark_mode') }}" />
 
     <flux:dropdown>
         <flux:profile :name="Str::title(auth()->user()->first_name . ' ' . auth()->user()->last_name)"/>
@@ -69,7 +73,7 @@
     <form action="{{ route('logout') }}" method="post">
         @csrf
         <flux:button type="submit" class="w-full" variant="danger" icon="arrow-right-start-on-rectangle">
-            Logout
+            {{ __('sidebar.logout') }}
         </flux:button>
     </form>
 
