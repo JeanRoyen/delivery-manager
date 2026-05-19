@@ -2,11 +2,9 @@
 
 namespace App\Livewire\Forms;
 
-use Akaunting\Money\Money;
 use App\Models\Product;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
-use function str_replace;
 
 class ProductForm extends Form
 {
@@ -16,19 +14,27 @@ class ProductForm extends Form
     #[Validate('nullable')]
     public $description;
 
-    #[Validate('required|decimal:2')]
+    #[Validate('required|regex:/^\d+([.,]\d{1,2})?$/')]
     public $price;
+
 
     public function store(): void
     {
         $validated = $this->validate();
 
-        $price = str_replace('.', '', $this->price);
+        $validated['price'] = $this->normalizePrice($this->price);
 
-        Product::create([
-            'name' => $validated['name'],
-            'description' => $validated['description'],
-            'price' => $price,
-        ]);
+        Product::create($validated);
     }
+
+    /* Permet de récuperer le prix du formulaire avec virgule, point et vide en entrant le prix en centimes dans la base de données. */
+    private function normalizePrice(string $price): int
+    {
+        $price = str_replace(' ', '', $price);
+
+        $price = str_replace(',', '.', $price);
+
+        return (int)round(((float)$price) * 100);
+    }
+
 }
