@@ -28,6 +28,7 @@ new class extends Component {
             $this->sortBy = $column;
             $this->sortDirection = 'asc';
         }
+        $this->resetPage();
     }
 
     #[Computed]
