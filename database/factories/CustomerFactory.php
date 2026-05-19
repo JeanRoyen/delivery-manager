@@ -16,7 +16,7 @@ class CustomerFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'address' => $this->faker->address(),
-            'phone' => $this->faker->phoneNumber(),
+            'phone' => $this->faker->numerify('0 4## ## ## ##'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
