@@ -5,6 +5,8 @@ namespace App\Livewire\Forms;
 use App\Models\Product;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
+use function __;
+use function strtolower;
 
 class ProductForm extends Form
 {
@@ -16,6 +18,15 @@ class ProductForm extends Form
 
     #[Validate('required|regex:/^\d+([.,]\d{1,2})?$/')]
     public $price;
+
+    public function validationAttributes(): array
+    {
+        return [
+            'name' => strtolower(__('form.name')),
+            'description' => strtolower(__('form.description')),
+            'price' => strtolower(__('form.price')),
+        ];
+    }
 
 
     public function store(): void
