@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\OrderStatus;
 use App\Models\Customer;
 use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -14,7 +15,7 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            'status' => $this->faker->word(),
+            'status' => $this->faker->randomElement(OrderStatus::cases()),
             'total_amount' => $this->faker->randomNumber(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
