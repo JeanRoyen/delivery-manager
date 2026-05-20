@@ -6,7 +6,7 @@ return [
     'products' => 'Producten',
 
     'order_management' => 'Bestelbeheer',
-    'orders' => 'Bestellingen',
+    'orders' => 'Te verwerken',
     'preparation' => 'Voorbereiding',
     'deliveries' => 'Leveringen',
     'history' => 'Geschiedenis',

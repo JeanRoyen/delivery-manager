@@ -6,7 +6,7 @@ return [
     'products' => 'Products',
 
     'order_management' => 'Order management',
-    'orders' => 'Orders',
+    'orders' => 'To process',
     'preparation' => 'Preparation',
     'deliveries' => 'Deliveries',
     'history' => 'History',
