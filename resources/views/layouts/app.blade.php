@@ -42,16 +42,16 @@
         </flux:sidebar.item>
 
         <flux:sidebar.group expandable icon="cube" heading="{{ __('sidebar.order_management') }}" class="grid">
-            <flux:sidebar.item href="{{ route('order.index') }}">
+            <flux:sidebar.item href="{{ route('pending.index') }}">
                 {{ __('sidebar.orders') }}
             </flux:sidebar.item>
-            <flux:sidebar.item href="{{ route('preparation.index') }}">
+            <flux:sidebar.item href="{{ route('preparing.index') }}">
                 {{ __('sidebar.preparation') }}
             </flux:sidebar.item>
-            <flux:sidebar.item href="{{ route('delivery.index') }}">
+            <flux:sidebar.item href="{{ route('delivering.index') }}">
                 {{ __('sidebar.deliveries') }}
             </flux:sidebar.item>
-            <flux:sidebar.item href="{{ route('historic.index') }}">
+            <flux:sidebar.item href="{{ route('delivered.index') }}">
                 {{ __('sidebar.history') }}
             </flux:sidebar.item>
         </flux:sidebar.group>
