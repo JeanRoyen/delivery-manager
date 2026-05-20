@@ -1,9 +1,19 @@
 <?php
 
+use App\Enums\OrderStatus;
+use App\Models\Order;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component {
-    //
+
+    #[Computed]
+    public function deliveringOrders(): LengthAwarePaginator
+    {
+        return Order::where('status', OrderStatus::DELIVERING)
+            ->paginate(10);
+    }
 };
 ?>
 
