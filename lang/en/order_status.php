@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'pending' => 'Order',
+    'pending' => 'Pending',
     'preparing' => 'Preparing',
-    'delivering' => 'Delivery',
-    'delivered' => 'History',
+    'delivering' => 'In progress',
+    'delivered' => 'Completed',
 ];

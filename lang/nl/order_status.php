@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'pending' => 'Bestelling',
+    'pending' => 'In afwachting',
     'preparing' => 'Voorbereiding',
-    'delivering' => 'Levering',
-    'delivered' => 'Geschiedenis',
+    'delivering' => 'Bezig met levering',
+    'delivered' => 'Afgerond',
 ];
