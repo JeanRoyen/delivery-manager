@@ -9,8 +9,12 @@ Route::middleware(['auth', 'language'])->group(function () {
     Route::livewire('/customer/create', 'pages::customer.create')->name('customer.create');
     Route::livewire('/product', 'pages::product.index')->name('product.index');
     Route::livewire('/product/create', 'pages::product.create')->name('product.create');
-    Route::livewire('/order', 'pages::order.index')->name('order.index');
-    Route::livewire('/preparation', 'pages::preparation.index')->name('preparation.index');
-    Route::livewire('/delivery', 'pages::delivery.index')->name('delivery.index');
-    Route::livewire('/historic', 'pages::historic.index')->name('historic.index');
+
+    Route::prefix('orders')->group(function () {
+
+    });
+    Route::livewire('/delivered', 'pages::orders.delivered.index')->name('order.index');
+    Route::livewire('/delivering', 'pages::orders.delivering.index')->name('preparation.index');
+    Route::livewire('/pending', 'pages::orders.pending.index')->name('delivery.index');
+    Route::livewire('/preparing', 'pages::orders.preparing.index')->name('historic.index');
 });
