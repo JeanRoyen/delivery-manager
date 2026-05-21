@@ -13,4 +13,5 @@ return [
     'actions' => 'Actions',
 
     'delete' => 'Delete',
+    'delete_confirm' => 'Are you sure you want to delete: ',
 ];
