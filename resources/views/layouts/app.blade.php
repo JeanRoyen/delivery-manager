@@ -29,7 +29,7 @@
     </flux:sidebar.header>
 
     <flux:sidebar.nav>
-        <flux:sidebar.item icon="home" href="{{ route('dashboard.index') }}">
+        <flux:sidebar.item icon="squares-2x2" href="{{ route('dashboard.index') }}">
             {{ __('sidebar.dashboard') }}
         </flux:sidebar.item>
 
@@ -37,7 +37,7 @@
             {{ __('sidebar.customers') }}
         </flux:sidebar.item>
 
-        <flux:sidebar.item icon="user" href="{{ route('product.index') }}">
+        <flux:sidebar.item icon="list-bullet" href="{{ route('product.index') }}">
             {{ __('sidebar.products') }}
         </flux:sidebar.item>
 
