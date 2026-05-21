@@ -11,6 +11,7 @@ return [
     'address' => 'Address',
     'phone' => 'Phone number',
     'price_description' => 'Only the dot is accepted as a separator (example: 10.00).',
+    'abbr_required' => 'Required',
 
     'submit_customer' => 'Save new customer',
     'submit_product' => 'Save new product',

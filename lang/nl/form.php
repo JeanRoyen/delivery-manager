@@ -11,6 +11,7 @@ return [
     'address' => 'Adres',
     'phone' => 'Telefoonnummer',
     'price_description' => 'Alleen de punt is toegestaan als scheidingsteken (voorbeeld: 10.00).',
+    'abbr_required' => 'Vereist',
 
     'submit_customer' => 'Nieuwe klant opslaan',
     'submit_product' => 'Nieuw product opslaan',
