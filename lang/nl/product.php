@@ -13,5 +13,6 @@ return [
     'delete' => 'Verwijderen',
 
     'add_product' => 'Product toevoegen',
+    'delete_confirm' => 'Weet u zeker dat u het volgende wilt verwijderen: ',
 
 ];

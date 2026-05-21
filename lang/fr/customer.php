@@ -13,4 +13,5 @@ return [
     'actions' => 'Actions',
 
     'delete' => 'Supprimer',
-    'delete_confirm' => 'Êtes-vous sûr de vouloir supprimer : ',];
+    'delete_confirm' => 'Êtes-vous sûr de vouloir supprimer : ',
+    ];

@@ -13,4 +13,5 @@ return [
     'delete' => 'Delete',
 
     'add_product' => 'Add product',
+    'delete_confirm' => 'Are you sure you want to delete: ',
 ];

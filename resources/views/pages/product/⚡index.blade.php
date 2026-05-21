@@ -112,7 +112,10 @@ new class extends Component {
                                         inset="top bottom"
                                     />
                                     <flux:menu>
-                                        <flux:menu.item icon="trash" wire:click="delete({{ $product->id }})">
+
+                                        <flux:menu.item icon="trash"
+                                                        wire:click="delete({{ $product->id }})"
+                                                        wire:confirm="{{ __('product.delete_confirm') }}{{ $product->name }}">
                                             {{ __('product.delete') }}
                                         </flux:menu.item>
                                     </flux:menu>

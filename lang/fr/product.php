@@ -13,4 +13,6 @@ return [
     'delete' => 'Supprimer',
 
     'add_product' => 'Ajouter un produit',
+    'delete_confirm' => 'Êtes-vous sûr de vouloir supprimer : ',
 ];
+
