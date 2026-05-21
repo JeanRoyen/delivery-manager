@@ -9,7 +9,6 @@ use Livewire\Component;
 new class extends Component {
     use Livewire\WithPagination;
 
-    use Livewire\WithPagination;
     #[Computed]
     public function pendingOrders(): LengthAwarePaginator
     {
@@ -20,5 +19,5 @@ new class extends Component {
 ?>
 
 <x-general.section_with_title title="{{ __('order.pending_title') }}">
-    <x-order.table :orders="$this->pendingOrders" />
+    <x-order.table_with_paginator :orders="$this->pendingOrders" />
 </x-general.section_with_title>

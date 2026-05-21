@@ -19,5 +19,5 @@ new class extends Component {
 ?>
 
 <x-general.section_with_title title="{{ __('order.delivering_title') }}">
-    <x-order.table :orders="$this->deliveringOrders" />
+    <x-order.table_with_paginator :orders="$this->deliveringOrders" />
 </x-general.section_with_title>
