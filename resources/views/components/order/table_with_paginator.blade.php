@@ -29,7 +29,9 @@
                 </flux:table.cell>
 
                 <flux:table.cell>
-                    {{ $order->status->label() }}
+                    <flux:badge color="{{ $order->status->badgeColor() }}">
+                        {{ $order->status->label() }}
+                    </flux:badge>
                 </flux:table.cell>
 
                 <flux:table.cell>

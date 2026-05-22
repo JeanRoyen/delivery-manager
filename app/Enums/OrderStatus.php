@@ -21,4 +21,13 @@ enum OrderStatus: string
       };
     }
 
+    public function badgeColor(): string
+    {
+        return match ($this) {
+            self::PENDING => 'zinc',
+            self::PREPARING => 'yellow',
+            self::DELIVERING => 'sky',
+            self::DELIVERED => 'green',
+        };
+    }
 }
