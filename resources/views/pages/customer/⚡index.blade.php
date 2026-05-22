@@ -61,11 +61,7 @@ new class extends Component {
 <div>
     <x-general.section_with_title title="{{ __('customer.customer_list') }}">
         <div class="flex items-center justify-between gap-10">
-            <flux:input
-                icon="magnifying-glass"
-                placeholder="{{ __('customer.search_placeholder') }}"
-                wire:model.live.debounce.300ms="search"
-            />
+            <x-general.searchbar />
 
             <flux:button
                 variant="primary"
@@ -80,7 +76,8 @@ new class extends Component {
         <flux:table :paginate="$this->customers">
             <flux:table.columns>
                 <flux:table.column sortable :sorted="$sortBy === 'id'" :direction="$sortDirection"
-                                   wire:click="sort('id')">ID</flux:table.column>
+                                   wire:click="sort('id')">ID
+                </flux:table.column>
                 <flux:table.column sortable :sorted="$sortBy === 'name'" :direction="$sortDirection"
                                    wire:click="sort('name')">{{ __('customer.customer_name') }}
                 </flux:table.column>

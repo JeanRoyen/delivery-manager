@@ -56,11 +56,7 @@ new class extends Component {
 <div>
     <x-general.section_with_title title="{{ __('product.product_list') }}">
         <div class="flex items-center justify-between gap-10">
-            <flux:input
-                icon="magnifying-glass"
-                placeholder="{{ __('product.search_placeholder') }}"
-                wire:model.live.debounce.300ms="search"
-            />
+            <x-general.searchbar/>
             <flux:button
                 variant="primary"
                 color="green"
