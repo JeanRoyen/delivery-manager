@@ -7,14 +7,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component {
-    use Livewire\WithPagination;
 
-    #[Computed]
-    public function pendingOrders(): LengthAwarePaginator
-    {
-        return Order::where('status', OrderStatus::PENDING)
-            ->paginate(10);
-    }
 };
 ?>
 
