@@ -11,7 +11,7 @@ use Livewire\WithPagination;
 new class extends Component {
     use WithPagination;
 
-    public OrderStatus $status;
+    public ?OrderStatus $status = null;
     public string $search = '';
 
     public function updatedSearch($page): void
@@ -22,11 +22,16 @@ new class extends Component {
     #[Computed]
     public function orders(): LengthAwarePaginator
     {
-        // Cette query permet de rechercher un utilisateur par son nom et également par un ID sans rechercher les id ressemblant avec un status différent
+        // Cette query permet de rechercher un utilisateur par son nom et également par un ID sans rechercher les id ressemblant avec un status différent, si le composant est appelé sans valeur dans $status : il retournera la liste des commandes dans l'historique.
 
         return Order::query()
             ->with(['customer', 'items'])
-            ->where('status', $this->status)
+            ->when($this->status, function (Builder $query) {
+                $query->where('status', $this->status);
+            })
+            ->when(!$this->status, function (Builder $query) {
+                $query->where('status', '!=', OrderStatus::DELIVERED);
+            })
             ->when($this->search, function (Builder $query) {
                 $query->where(function (Builder $q) {
                     $q->where('id', 'like', "%{$this->search}%")

@@ -14,4 +14,6 @@ new class extends Component {
 
     <livewire:dashboard.cards_list />
 
+    <livewire:order.table/>
+
 </div>
