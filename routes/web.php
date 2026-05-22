@@ -11,6 +11,7 @@ Route::middleware(['auth', 'language'])->group(function () {
     Route::livewire('/product/create', 'pages::product.create')->name('product.create');
 
     Route::prefix('orders')->group(function () {
+        Route::livewire('/create', 'pages::orders.create')->name('orders.create');
         Route::livewire('/delivered', 'pages::orders.delivered.index')->name('delivered.index');
         Route::livewire('/delivering', 'pages::orders.delivering.index')->name('delivering.index');
         Route::livewire('/pending', 'pages::orders.pending.index')->name('pending.index');
