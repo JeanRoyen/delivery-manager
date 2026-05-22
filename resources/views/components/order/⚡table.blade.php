@@ -61,13 +61,15 @@ new class extends Component {
 }
 ?>
 <div class="space-y-4">
-    <x-general.searchbar/>
+    <x-general.searchbar />
+    <livewire:order.navbar />
     <flux:table>
         <flux:table.columns>
 
             <flux:table.column sortable :sorted="$sortBy === 'code'" :direction="$sortDirection"
-                               wire:click="sort('code')">ID</flux:table.column>
-            <flux:table.column >{{ __('order.customer') }}</flux:table.column>
+                               wire:click="sort('code')">ID
+            </flux:table.column>
+            <flux:table.column>{{ __('order.customer') }}</flux:table.column>
             <flux:table.column sortable :sorted="$sortBy === 'created_at'" :direction="$sortDirection"
                                wire:click="sort('created_at')">{{ __('order.created_at') }}</flux:table.column>
             <flux:table.column sortable :sorted="$sortBy === 'status'" :direction="$sortDirection"
