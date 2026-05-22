@@ -63,15 +63,9 @@ new class extends Component {
         <div class="flex items-center justify-between gap-10">
             <x-general.searchbar />
 
-            <flux:button
-                variant="primary"
-                color="green"
-                icon="plus"
-                href="{{ route('customer.create') }}"
-                wire:navigate
-            >
+            <x-general.button_new href="{{ route('customer.create') }}">
                 {{ __('customer.add_customer') }}
-            </flux:button>
+            </x-general.button_new>
         </div>
         <flux:table :paginate="$this->customers">
             <flux:table.columns>

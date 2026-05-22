@@ -57,15 +57,10 @@ new class extends Component {
     <x-general.section_with_title title="{{ __('product.product_list') }}">
         <div class="flex items-center justify-between gap-10">
             <x-general.searchbar/>
-            <flux:button
-                variant="primary"
-                color="green"
-                icon="plus"
-                href="{{ route('product.create') }}"
-                wire:navigate
-            >
+
+            <x-general.button_new href="{{ route('product.create') }}">
                 {{ __('product.add_product') }}
-            </flux:button>
+            </x-general.button_new>
         </div>
         <flux:table :paginate="$this->products">
             <flux:table.columns>
