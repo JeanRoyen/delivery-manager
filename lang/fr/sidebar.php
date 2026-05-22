@@ -11,6 +11,8 @@ return [
     'deliveries' => 'Livraisons',
     'history' => 'Historique',
 
+    'new_command' => 'Créer une commande',
+
     'dark_mode' => 'Mode sombre',
     'logout' => 'Déconnexion',
 ];

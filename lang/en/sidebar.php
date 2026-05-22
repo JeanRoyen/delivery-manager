@@ -11,6 +11,8 @@ return [
     'deliveries' => 'Deliveries',
     'history' => 'History',
 
+    'new_command' => 'Create an order',
+
     'dark_mode' => 'Dark mode',
     'logout' => 'Logout',
 ];

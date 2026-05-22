@@ -11,6 +11,8 @@ return [
     'deliveries' => 'Leveringen',
     'history' => 'Geschiedenis',
 
+    'new_command' => 'Bestelling aanmaken',
+
     'dark_mode' => 'Donkere modus',
     'logout' => 'Uitloggen',
 ];
