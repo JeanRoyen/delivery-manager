@@ -15,6 +15,7 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
+            'code' => $this->faker->ean8(),
             'status' => $this->faker->randomElement(OrderStatus::cases()),
             'total_amount' => $this->faker->randomNumber(),
             'created_at' => Carbon::now(),

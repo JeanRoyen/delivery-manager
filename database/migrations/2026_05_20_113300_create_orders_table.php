@@ -9,6 +9,7 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->integer('code')->unique();
             $table->string('status');
             $table->integer('total_amount');
             $table->foreignId('customer_id')->constrained('customers');

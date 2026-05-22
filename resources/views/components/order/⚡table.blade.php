@@ -63,7 +63,7 @@ new class extends Component {
                 <flux:table.row>
 
                     <flux:table.cell>
-                        {{ $order->id }}
+                        {{ $order->code }}
                     </flux:table.cell>
                     <flux:table.cell>
                         {{ $order->customer->name }}
