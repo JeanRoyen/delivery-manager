@@ -19,5 +19,5 @@ new class extends Component {
 ?>
 
 <x-general.section_with_title title="{{ __('order.pending_title') }}">
-    <x-order.table_with_paginator :orders="$this->pendingOrders" />
+    <livewire:order.table :status="OrderStatus::PENDING"/>
 </x-general.section_with_title>

@@ -8,20 +8,10 @@ use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component {
-    use Livewire\WithPagination;
 
-    #[Computed]
-    public function deliveredOrders(): LengthAwarePaginator
-    {
-        return Order::query()
-            ->with(['customer', 'items'])
-            ->where('status', OrderStatus::DELIVERED)
-            ->latest()
-            ->paginate(10);
-    }
 };
 ?>
 
 <x-general.section_with_title title="{{ __('order.delivered_title') }}">
-    <x-order.table_with_paginator :orders="$this->deliveredOrders" />
+    <livewire:order.table :status="OrderStatus::DELIVERED"/>
 </x-general.section_with_title>
