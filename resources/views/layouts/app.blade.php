@@ -14,23 +14,7 @@
 </head>
 <body class="min-h-screen bg-white dark:bg-zinc-800">
 
-<flux:sidebar
-    sticky
-    collapsible="mobile"
-    class="bg-zinc-50 dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-700"
->
-    <x-sidebar.nav_menu />
-
-    <flux:sidebar.spacer />
-
-   <livewire:sidebar.avatar_dropdown/>
-
-    <flux:switch x-data x-model="$flux.dark" label="{{ __('sidebar.dark_mode') }}" />
-
-    <x-sidebar.language_dropdown/>
-
-
-</flux:sidebar>
+<x-sidebar.sidebar/>
 
 <flux:main>
     @persist('toast')
