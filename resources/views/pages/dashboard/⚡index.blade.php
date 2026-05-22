@@ -10,7 +10,7 @@ new class extends Component {
 }
 ?>
 
-<div>
+<div class="space-y-6">
 
     <livewire:dashboard.cards_list />
 

@@ -60,7 +60,7 @@ new class extends Component {
     }
 }
 ?>
-<div>
+<div class="space-y-4">
     <x-general.searchbar/>
     <flux:table>
         <flux:table.columns>
