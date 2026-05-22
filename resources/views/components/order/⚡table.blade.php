@@ -2,6 +2,7 @@
 
 use App\Enums\OrderStatus;
 use App\Models\Order;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -11,19 +12,36 @@ new class extends Component {
     use WithPagination;
 
     public OrderStatus $status;
+    public string $search = '';
+
+    public function updatedSearch($page): void
+    {
+        $this->resetPage();
+    }
 
     #[Computed]
     public function orders(): LengthAwarePaginator
     {
+        // Cette query permet de rechercher un utilisateur par son nom et également par un ID sans rechercher les id ressemblant avec un status différent
+
         return Order::query()
             ->with(['customer', 'items'])
             ->where('status', $this->status)
+            ->when($this->search, function (Builder $query) {
+                $query->where(function (Builder $q) {
+                    $q->where('id', 'like', "%{$this->search}%")
+                        ->orWhereHas('customer', function (Builder $customer) {
+                            $customer->where('name', 'like', "%{$this->search}%");
+                        });
+                });
+            })
             ->latest()
             ->paginate(10);
     }
-};
+}
 ?>
 <div>
+    <x-general.searchbar/>
     <flux:table>
         <flux:table.columns>
 
