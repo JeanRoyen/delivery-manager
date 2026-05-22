@@ -10,10 +10,8 @@ new class extends Component {
 }
 ?>
 
-<div class="space-y-6">
-
-    <livewire:dashboard.cards_list />
+<x-general.section_with_title title="{{ __('sidebar.dashboard') }}">
 
     <livewire:order.table/>
 
-</div>
+</x-general.section_with_title>
