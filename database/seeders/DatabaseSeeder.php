@@ -33,9 +33,9 @@ class DatabaseSeeder extends Seeder
             'password' => 'test',
         ]);
 
-        Customer::factory()->count(40)->create();
-        Product::factory()->count(40)->create();
-        Order::factory()->count(100)->create();
+        Customer::factory()->count(100)->create();
+        Product::factory()->count(100)->create();
+        Order::factory()->count(50)->create();
         OrderItem::factory()->count(100)->create();
 
     }
