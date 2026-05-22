@@ -21,44 +21,24 @@ new class extends Component {
 
 <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
 
-    <flux:card class="h-full">
-        <flux:heading>
-            {{ __('dashboard.pending_orders') }}
-        </flux:heading>
+    <x-dashboard.card
+        :title="__('dashboard.pending_orders')"
+        :value="$this->stats['pending']"
+    />
 
-        <flux:text>
-            {{ $this->stats['pending'] }}
-        </flux:text>
-    </flux:card>
+    <x-dashboard.card
+        :title="__('dashboard.preparing_orders')"
+        :value="$this->stats['preparing']"
+    />
 
-    <flux:card class="h-full">
-        <flux:heading>
-            {{ __('dashboard.preparing_orders') }}
-        </flux:heading>
+    <x-dashboard.card
+        :title="__('dashboard.delivering_orders')"
+        :value="$this->stats['delivering']"
+    />
 
-        <flux:text>
-            {{ $this->stats['preparing'] }}
-        </flux:text>
-    </flux:card>
-
-    <flux:card class="h-full">
-        <flux:heading>
-            {{ __('dashboard.delivering_orders') }}
-        </flux:heading>
-
-        <flux:text>
-            {{ $this->stats['delivering'] }}
-        </flux:text>
-    </flux:card>
-
-    <flux:card class="h-full">
-        <flux:heading>
-            {{ __('dashboard.delivered_orders') }}
-        </flux:heading>
-
-        <flux:text>
-            {{ $this->stats['delivered'] }}
-        </flux:text>
-    </flux:card>
+    <x-dashboard.card
+        :title="__('dashboard.delivered_orders')"
+        :value="$this->stats['delivered']"
+    />
 
 </div>
