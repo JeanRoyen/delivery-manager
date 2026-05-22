@@ -19,69 +19,16 @@
     collapsible="mobile"
     class="bg-zinc-50 dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-700"
 >
-    <flux:sidebar.header>
-        <flux:sidebar.brand
-            href="{{ route('dashboard.index') }}"
-            name="Delivery Manager"
-        />
-
-        <flux:sidebar.collapse class="lg:hidden" />
-    </flux:sidebar.header>
-
-    <flux:sidebar.nav>
-        <flux:sidebar.item icon="squares-2x2" href="{{ route('dashboard.index') }}">
-            {{ __('sidebar.dashboard') }}
-        </flux:sidebar.item>
-
-        <flux:sidebar.item icon="user" href="{{ route('customer.index') }}">
-            {{ __('sidebar.customers') }}
-        </flux:sidebar.item>
-
-        <flux:sidebar.item icon="list-bullet" href="{{ route('product.index') }}">
-            {{ __('sidebar.products') }}
-        </flux:sidebar.item>
-
-        <flux:sidebar.group expandable icon="cube" heading="{{ __('sidebar.order_management') }}" class="grid">
-            <flux:sidebar.item href="{{ route('pending.index') }}">
-                {{ __('sidebar.orders') }}
-            </flux:sidebar.item>
-            <flux:sidebar.item href="{{ route('preparing.index') }}">
-                {{ __('sidebar.preparation') }}
-            </flux:sidebar.item>
-            <flux:sidebar.item href="{{ route('delivering.index') }}">
-                {{ __('sidebar.deliveries') }}
-            </flux:sidebar.item>
-            <flux:sidebar.item href="{{ route('delivered.index') }}">
-                {{ __('sidebar.history') }}
-            </flux:sidebar.item>
-        </flux:sidebar.group>
-    </flux:sidebar.nav>
+    <x-sidebar.nav_menu />
 
     <flux:sidebar.spacer />
 
-    <flux:dropdown>
-        <flux:button icon:trailing="chevron-down" class="w-full">
-            {{ language()->getName() }}
-        </flux:button>
-        <flux:navmenu>
-            @foreach (language()->allowed() as $code => $name)
-                <flux:navmenu.item href="{{ language()->back($code) }}">{{ $name }}</flux:navmenu.item>
-            @endforeach
-        </flux:navmenu>
-    </flux:dropdown>
+   <livewire:sidebar.avatar_dropdown/>
 
     <flux:switch x-data x-model="$flux.dark" label="{{ __('sidebar.dark_mode') }}" />
 
+    <x-sidebar.language_dropdown/>
 
-    <flux:profile :chevron="false" :name="Str::title(auth()->user()->first_name . ' ' . auth()->user()->last_name)" />
-
-
-    <form action="{{ route('logout') }}" method="post">
-        @csrf
-        <flux:button type="submit" class="w-full" variant="danger" icon="arrow-right-start-on-rectangle">
-            {{ __('sidebar.logout') }}
-        </flux:button>
-    </form>
 
 </flux:sidebar>
 
