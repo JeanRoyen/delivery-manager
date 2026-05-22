@@ -56,7 +56,7 @@ new class extends Component {
                 });
             })
             ->orderBy($this->sortBy, $this->sortDirection)
-            ->paginate(10);
+            ->paginate(15);
     }
 }
 ?>
