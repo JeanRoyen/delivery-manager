@@ -11,11 +11,26 @@ use Livewire\WithPagination;
 new class extends Component {
     use WithPagination;
 
+    public string $sortBy = 'created_at';
+
+    public string $sortDirection = 'desc';
+
     public ?OrderStatus $status = null;
     public string $search = '';
 
     public function updatedSearch($page): void
     {
+        $this->resetPage();
+    }
+
+    public function sort($column): void
+    {
+        if ($this->sortBy === $column) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortBy = $column;
+            $this->sortDirection = 'asc';
+        }
         $this->resetPage();
     }
 
@@ -40,7 +55,7 @@ new class extends Component {
                         });
                 });
             })
-            ->latest()
+            ->orderBy($this->sortBy, $this->sortDirection)
             ->paginate(10);
     }
 }
@@ -50,10 +65,13 @@ new class extends Component {
     <flux:table>
         <flux:table.columns>
 
-            <flux:table.column>ID</flux:table.column>
-            <flux:table.column>{{ __('order.customer') }}</flux:table.column>
-            <flux:table.column>{{ __('order.created_at') }}</flux:table.column>
-            <flux:table.column>{{ __('order.status') }}</flux:table.column>
+            <flux:table.column sortable :sorted="$sortBy === 'code'" :direction="$sortDirection"
+                               wire:click="sort('code')">ID</flux:table.column>
+            <flux:table.column >{{ __('order.customer') }}</flux:table.column>
+            <flux:table.column sortable :sorted="$sortBy === 'created_at'" :direction="$sortDirection"
+                               wire:click="sort('created_at')">{{ __('order.created_at') }}</flux:table.column>
+            <flux:table.column sortable :sorted="$sortBy === 'status'" :direction="$sortDirection"
+                               wire:click="sort('status')">{{ __('order.status') }}</flux:table.column>
             <flux:table.column>{{ __('order.total') }}</flux:table.column>
 
         </flux:table.columns>
