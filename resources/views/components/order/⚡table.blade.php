@@ -72,8 +72,7 @@ new class extends Component {
             <flux:table.column>{{ __('order.customer') }}</flux:table.column>
             <flux:table.column sortable :sorted="$sortBy === 'created_at'" :direction="$sortDirection"
                                wire:click="sort('created_at')">{{ __('order.created_at') }}</flux:table.column>
-            <flux:table.column sortable :sorted="$sortBy === 'status'" :direction="$sortDirection"
-                               wire:click="sort('status')">{{ __('order.status') }}</flux:table.column>
+            <flux:table.column>{{ __('order.status') }}</flux:table.column>
             <flux:table.column>{{ __('order.total') }}</flux:table.column>
 
         </flux:table.columns>
