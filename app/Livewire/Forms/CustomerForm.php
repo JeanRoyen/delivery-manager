@@ -34,7 +34,7 @@ class CustomerForm extends Form
 
     public function store(): void
     {
-       $validated = $this->validate();
+        $validated = $this->validate();
 
 
         Customer::create($validated);
