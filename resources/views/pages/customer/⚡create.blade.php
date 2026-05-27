@@ -19,32 +19,32 @@ new class extends Component {
 ?>
 
 <div>
-     <x-general.section_with_title title="{{ __('form.customer_create_title') }}">
-         <form wire:submit.prevent="save" class="space-y-4">
-             <x-form.input_required
-                 name="form.name"
-                 :label="__('form.name')"
-                 wire:model="form.name"
-             />
+    <x-general.section_with_title title="{{ __('form.customer_create_title') }}">
+        <form wire:submit.prevent="save" class="space-y-4">
+            <x-form.input_required
+                name="form.name"
+                :label="__('form.name')"
+                wire:model="form.name"
+            />
 
-             <x-form.input_required
-                 name="form.email"
-                 :label="__('form.email')"
-                 type="email"
-                 wire:model="form.email"
-             />
+            <x-form.input_required
+                name="form.email"
+                :label="__('form.email')"
+                type="email"
+                wire:model="form.email"
+            />
 
-             <x-form.input_required
-                 name="form.address"
-                 :label="__('form.address')"
-                 wire:model="form.address"
-             />
+            <x-form.input_required
+                name="form.address"
+                :label="__('form.address')"
+                wire:model="form.address"
+            />
 
-             <flux:input type="phone" wire:model="form.phone" label="{{ __('form.phone') }}" />
+            <flux:input type="phone" wire:model="form.phone" label="{{ __('form.phone') }}" />
 
-             <flux:button variant="primary" color="green" type="submit" icon="plus" class="w-full mt-10 py-6">
-                 {{ __('form.submit_customer') }}
-             </flux:button>
-         </form>
-     </x-general.section_with_title>
+            <flux:button variant="primary" color="green" type="submit" icon="plus" class="w-full mt-10 py-6">
+                {{ __('form.submit_customer') }}
+            </flux:button>
+        </form>
+    </x-general.section_with_title>
 </div>
