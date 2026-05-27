@@ -36,7 +36,6 @@ class CustomerForm extends Form
     {
         $validated = $this->validate();
 
-
         Customer::create($validated);
     }
 }

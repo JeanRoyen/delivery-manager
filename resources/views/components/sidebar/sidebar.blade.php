@@ -13,11 +13,6 @@
 
     <livewire:sidebar.avatar_dropdown/>
 
-    <flux:switch x-data x-model="$flux.dark" label="{{ __('sidebar.dark_mode') }}" />
-
     <x-sidebar.language_dropdown/>
-
-
-
 
 </flux:sidebar>

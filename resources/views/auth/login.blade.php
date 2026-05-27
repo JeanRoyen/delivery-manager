@@ -9,7 +9,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @livewireStyles
-    @fluxAppearance
 
 </head>
 <body class="bg-white dark:bg-zinc-800 flex min-h-screen">
@@ -55,9 +54,6 @@
         class="w-full h-full object-cover"
     >
 </div>
-
-@livewireScripts
-@fluxScripts
 </body>
 
 @livewireScripts
