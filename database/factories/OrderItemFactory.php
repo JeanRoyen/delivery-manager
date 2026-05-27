@@ -15,9 +15,9 @@ class OrderItemFactory extends Factory
     public function definition(): array
     {
         return [
-            'quantity' => $this->faker->randomNumber(),
-            'unit_price' => $this->faker->randomNumber(),
-            'total_price' => $this->faker->randomNumber(),
+            'quantity' => $this->faker->numberBetween(1, 10),
+            'unit_price' => $this->faker->numberBetween(100, 10000),
+            'total_price' => fn(array $attrs) => $attrs['unit_price'] * $attrs['quantity'],
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 

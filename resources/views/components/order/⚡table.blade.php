@@ -1,7 +1,7 @@
 <?php
 
-use App\Enums\OrderStatus;
 use App\Models\Order;
+use App\Models\Status;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
@@ -11,11 +11,12 @@ use Livewire\WithPagination;
 new class extends Component {
     use WithPagination;
 
+    public int $statusId;
+
     public string $sortBy = 'created_at';
 
     public string $sortDirection = 'desc';
 
-    public ?OrderStatus $status = null;
     public string $search = '';
 
     public function updatedSearch($page): void
@@ -37,20 +38,14 @@ new class extends Component {
     #[Computed]
     public function orders(): LengthAwarePaginator
     {
-        // Cette query permet de rechercher un utilisateur par son nom et également par un ID sans rechercher les id ressemblant avec un status différent, si le composant est appelé sans valeur dans $status : il retournera la liste des commandes dans l'historique.
-
         return Order::query()
-            ->with(['customer', 'items'])
-            ->when($this->status, function (Builder $query) {
-                $query->where('status', $this->status);
-            })
-            ->when(!$this->status, function (Builder $query) {
-                $query->where('status', '!=', OrderStatus::DELIVERED);
-            })
-            ->when($this->search, function (Builder $query) {
-                $query->where(function (Builder $q) {
-                    $q->where('id', 'like', "%{$this->search}%")
-                        ->orWhereHas('customer', function (Builder $customer) {
+            ->with(['status', 'customer'])
+            ->when($this->statusId, fn($query) => $query->where('status_id', $this->statusId))
+            ->when($this->search, function ($query) {
+                $query->where(function ($q) {
+                    $q->where('code', 'like', "%{$this->search}%")
+                        ->orWhere('id', 'like', "%{$this->search}%")
+                        ->orWhereHas('customer', function ($customer) {
                             $customer->where('name', 'like', "%{$this->search}%");
                         });
                 });
@@ -93,8 +88,8 @@ new class extends Component {
                     </flux:table.cell>
 
                     <flux:table.cell>
-                        <flux:badge color="{{ $order->status->badgeColor() }}">
-                            {{ $order->status->label() }}
+                        <flux:badge color="{{ $order->status->color }}">
+                            {{ __('order_status.' . $order->status->label) }}
                         </flux:badge>
                     </flux:table.cell>
 

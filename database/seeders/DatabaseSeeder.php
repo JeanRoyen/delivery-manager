@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\Status;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -33,10 +34,29 @@ class DatabaseSeeder extends Seeder
             'password' => 'test',
         ]);
 
+        Status::factory()->create([
+            'label' => 'pending',
+            'color' => 'yellow'
+        ]);
+        Status::factory()->create([
+            'label' => 'preparing',
+            'color' => 'sky'
+        ]);
+        Status::factory()->create([
+            'label' => 'delivering',
+            'color' => 'lime'
+        ]);
+        Status::factory()->create([
+            'label' => 'delivered',
+            'color' => 'zinc'
+        ]);
+
+
         Customer::factory()->count(100)->create();
         Product::factory()->count(100)->create();
         Order::factory()->count(50)->create();
         OrderItem::factory()->count(100)->create();
+
 
     }
 }

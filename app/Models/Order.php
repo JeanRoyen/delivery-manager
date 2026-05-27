@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\OrderStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,14 +16,10 @@ class Order extends Model
         'status',
         'total_amount',
         'customer_id',
+        'total',
+        'items',
+        'orders',
     ];
-
-    public function casts():array
-    {
-        return [
-            'status' => OrderStatus::class
-        ];
-    }
 
     public function customer(): BelongsTo
     {
@@ -34,5 +29,10 @@ class Order extends Model
     public function items():HasMany
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class);
     }
 }

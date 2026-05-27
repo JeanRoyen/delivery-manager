@@ -1,17 +1,14 @@
 @props([
     'status',
+    'color',
     'count',
     'route',
     'label',
 ])
 
-@php
-    use App\Enums\OrderStatus;
-@endphp
-
 <flux:navbar.item
     badge="{{ $count }}"
-    :badge-color="$status->badgeColor()"
+    :badge-color="$color"
     :href="$route"
 >
     {{ $label }}

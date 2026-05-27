@@ -9,11 +9,12 @@ return new class extends Migration {
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->integer('quantity');
-            $table->integer('unit_price');
-            $table->integer('total_price');
-            $table->foreignId('order_id')->constrained('orders');
-            $table->foreignId('product_id')->constrained('products');
+            $table->foreignId('order_id')->constrained('orders')->cascadeOnDelete();
+            $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
+            $table->unsignedInteger('quantity');
+            $table->unsignedInteger('unit_price');
+            $table->unsignedInteger('total_price');
+
             $table->timestamps();
             $table->softDeletes();
         });
