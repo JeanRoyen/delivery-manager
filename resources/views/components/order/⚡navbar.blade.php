@@ -1,12 +1,13 @@
 <?php
 
 use App\Models\Status;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component {
     #[Computed]
-    public function statuses()
+    public function statuses(): Collection
     {
         return Status::query()
             ->withCount('orders')
