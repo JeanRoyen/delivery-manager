@@ -10,5 +10,7 @@ return [
     'customer' => 'Customer',
     'date' => 'Date',
     'status' => 'Status',
-    'created_at' => 'Created at',    'total' => 'Total',
+    'created_at' => 'Created at',
+    'updated_at' => 'Updated at',
+    'total' => 'Total',
 ];

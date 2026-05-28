@@ -11,5 +11,6 @@ return [
     'date' => 'Date',
     'status' => 'Statut',
     'created_at' => 'Date de création',
+    'updated_at' => 'Date de modification',
     'total' => 'Total',
 ];

@@ -12,4 +12,5 @@ return [
     'status' => 'Status',
     'total' => 'Totaal',
     'created_at' => 'Aanmaakdatum',
+    'updated_at' => 'bijgewerkt op',
 ];
