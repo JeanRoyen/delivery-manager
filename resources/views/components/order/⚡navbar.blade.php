@@ -16,7 +16,7 @@ new class extends Component {
 };
 ?>
 
-<flux:navbar class="flex justify-center">
+<flux:navbar>
 
     @foreach($this->statuses as $status)
         <x-order.navbar_item
