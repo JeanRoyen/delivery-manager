@@ -17,6 +17,12 @@ new class extends Component {
 
     public string $search = '';
 
+    public function render()
+    {
+        return $this->view()
+            ->title('Delivery Manager | ' . __('pages_title.dashboard'));
+    }
+
     public function updatedSearch($page): void
     {
         $this->resetPage();
@@ -61,36 +67,7 @@ new class extends Component {
         </section>
         <section class="space-y-4">
             <h3>Actions rapides</h3>
-            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-                <x-general.fast-action_card
-                    title="Un nouveau client ? "
-                    button="Créer un client"
-                    :href="route('customer.create')"
-                >
-                    <x-slot:icon>
-                        <flux:icon.user class="size-10 text-zinc-700" />
-                    </x-slot:icon>
-                </x-general.fast-action_card>
-                <x-general.fast-action_card
-                    title="Un nouveau produit ?"
-                    button="Créer un produit"
-                    :href="route('product.create')"
-                >
-                    <x-slot:icon>
-                        <flux:icon.list-bullet class="size-10 text-zinc-700" />
-                    </x-slot:icon>
-                </x-general.fast-action_card>
-                <x-general.fast-action_card
-                    title="Une nouvelle commande ?"
-                    button="Créer une commande"
-                    :href="route('orders.create')"
-                >
-                    <x-slot:icon>
-                        <flux:icon.cube class="size-10 text-zinc-700" />
-                    </x-slot:icon>
-                </x-general.fast-action_card>
-
-            </div>
+            <x-dashboard.fast-action_card-list/>
         </section>
 
         <section>
