@@ -56,8 +56,10 @@ new class extends Component {
 }
 ?>
 <div class="space-y-4">
-    <x-general.searchbar />
-    <livewire:order.navbar />
+    <div class="flex gap-10 items-center">
+        <x-general.searchbar />
+        <livewire:order.navbar />
+    </div>
     <flux:table>
         <flux:table.columns>
 
