@@ -11,6 +11,12 @@ use Livewire\Component;
 new class extends Component {
     public ProductForm $form;
 
+    public function render()
+    {
+        return $this->view()
+            ->title('Delivery Manager | ' . __('pages_title.product_create'));
+    }
+
     public function save()
     {
         $this->form->store();

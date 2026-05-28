@@ -1,18 +1,26 @@
 <?php
 
 use App\Models\Customer;
+use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 
-new class extends Component {
+new class extends Component
+{
     use Livewire\WithPagination;
 
     public string $search = '';
     public string $sortBy = 'id';
 
     public string $sortDirection = 'desc';
+
+    public function render()
+    {
+        return $this->view()
+            ->title('Delivery Manager | ' . __('pages_title.customer_index'));
+    }
 
     public function updatedSearch($page): void
     {

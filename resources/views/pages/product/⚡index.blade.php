@@ -13,6 +13,12 @@ new class extends Component {
 
     public string $sortDirection = 'desc';
 
+    public function render()
+    {
+        return $this->view()
+            ->title('Delivery Manager | ' . __('pages_title.product_index'));
+    }
+
     public function updatedSearch($page): void
     {
         $this->resetPage();

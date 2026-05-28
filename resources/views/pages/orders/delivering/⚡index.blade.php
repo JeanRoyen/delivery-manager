@@ -8,7 +8,11 @@ use Livewire\WithPagination;
 use App\Models\Status;
 
 new class extends Component {
-
+    public function render()
+    {
+        return $this->view()
+            ->title('Delivery Manager | ' . __('pages_title.orders_delivering'));
+    }
 };
 ?>
 
