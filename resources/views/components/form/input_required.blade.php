@@ -6,14 +6,14 @@
 
 <flux:field>
 
-    <flux:label>
+    <flux:label badge="{{ ucfirst(__('form.abbr_required')) }}">
         {{ $label }}
-        <x-general.abbr_required_star />
     </flux:label>
 
     <flux:input
         :type="$type"
         {{ $attributes }}
+        required
     />
 
     <flux:error :name="$name" />
