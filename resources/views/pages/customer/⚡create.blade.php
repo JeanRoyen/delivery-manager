@@ -25,7 +25,7 @@ new class extends Component {
 
 <div>
     <x-general.section_with_title title="{{ __('form.customer_create_title') }}">
-        <form wire:submit.prevent="save" class="space-y-4">
+        <form wire:submit="save" class="space-y-4">
             <x-form.input_required
                 name="form.name"
                 :label="__('form.name')"
