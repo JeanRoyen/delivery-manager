@@ -18,6 +18,5 @@ new class extends Component {
 <x-general.section_with_title title="{{
     __('order.details_title', [
     'code' => $order->code,
-    'customer' => $order->customer->name,
-])
-}}"/>
+    'customer' => $order->customer->name,])}}"
+/>

@@ -15,4 +15,5 @@ return [
     'total' => 'Total',
 
     'details_title' => 'Order details number :code for :customer',
-];
+    'see_order' => 'View order',
+    ];

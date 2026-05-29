@@ -78,22 +78,20 @@ new class extends Component {
                     <livewire:order.navbar />
                 </div>
                 <flux:table.columns>
-
-                    <flux:table.column sortable :sorted="$sortBy === 'code'" :direction="$sortDirection"
+                    <flux:table.column align="center" sortable :sorted="$sortBy === 'code'" :direction="$sortDirection"
                                        wire:click="sort('code')">ID
                     </flux:table.column>
-                    <flux:table.column>{{ __('order.customer') }}</flux:table.column>
-                    <flux:table.column sortable :sorted="$sortBy === 'created_at'" :direction="$sortDirection"
+                    <flux:table.column align="center">{{ __('order.customer') }}</flux:table.column>
+                    <flux:table.column align="center" sortable :sorted="$sortBy === 'created_at'" :direction="$sortDirection"
                                        wire:click="sort('created_at')">{{ __('order.updated_at') }}</flux:table.column>
-                    <flux:table.column>{{ __('order.status') }}</flux:table.column>
-                    <flux:table.column>{{ __('order.total') }}</flux:table.column>
+                    <flux:table.column align="center">{{ __('order.status') }}</flux:table.column>
+                    <flux:table.column align="center">{{ __('order.total') }}</flux:table.column>
 
                 </flux:table.columns>
 
                 <flux:table.rows>
                     @foreach($this->orders as $order)
-                        <flux:table.row>
-
+                        <flux:table.row align="center">
                             <flux:table.cell>
                                 {{ $order->code }}
                             </flux:table.cell>

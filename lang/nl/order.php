@@ -15,4 +15,5 @@ return [
     'updated_at' => 'bijgewerkt op',
 
     'details_title' => 'Besteldetails nummer :code van :customer',
+    'see_order' => 'Bestelling bekijken',
 ];

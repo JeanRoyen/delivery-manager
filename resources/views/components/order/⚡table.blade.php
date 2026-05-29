@@ -63,21 +63,21 @@ new class extends Component {
     <flux:table>
         <flux:table.columns>
 
-            <flux:table.column sortable :sorted="$sortBy === 'code'" :direction="$sortDirection"
+            <flux:table.column align="center" sortable :sorted="$sortBy === 'code'" :direction="$sortDirection"
                                wire:click="sort('code')">ID
             </flux:table.column>
-            <flux:table.column>{{ __('order.customer') }}</flux:table.column>
-            <flux:table.column sortable :sorted="$sortBy === 'created_at'" :direction="$sortDirection"
+            <flux:table.column align="center">{{ __('order.customer') }}</flux:table.column>
+            <flux:table.column align="center" sortable :sorted="$sortBy === 'created_at'" :direction="$sortDirection"
                                wire:click="sort('created_at')">{{ __('order.created_at') }}</flux:table.column>
-            <flux:table.column>{{ __('order.status') }}</flux:table.column>
-            <flux:table.column>{{ __('order.total') }}</flux:table.column>
+            <flux:table.column align="center">{{ __('order.status') }}</flux:table.column>
+            <flux:table.column align="center">{{ __('order.total') }}</flux:table.column>
+            <flux:table.column align="center">{{ __('order.see_order') }}</flux:table.column>
 
         </flux:table.columns>
 
         <flux:table.rows>
             @foreach($this->orders as $order)
-                <flux:table.row>
-
+                <flux:table.row align="center">
                     <flux:table.cell>
                         {{ $order->code }}
                     </flux:table.cell>
@@ -97,6 +97,15 @@ new class extends Component {
 
                     <flux:table.cell>
                         {{ money($order->total_amount, 'EUR') }}
+                    </flux:table.cell>
+
+                    <flux:table.cell align="left">
+                        <flux:button
+                            size="sm"
+                            icon="eye"
+                            :href="route('orders.show', $order)"
+                            wire:navigate
+                        />
                     </flux:table.cell>
 
                 </flux:table.row>
