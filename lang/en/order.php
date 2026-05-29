@@ -13,4 +13,6 @@ return [
     'created_at' => 'Created at',
     'updated_at' => 'Updated at',
     'total' => 'Total',
+
+    'details_title' => 'Order details number :code for :customer',
 ];

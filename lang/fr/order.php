@@ -13,4 +13,5 @@ return [
     'created_at' => 'Date de création',
     'updated_at' => 'Date de modification',
     'total' => 'Total',
-];
+
+    'details_title' => 'Détails de la commande numéro :code de :customer',];

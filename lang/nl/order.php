@@ -13,4 +13,6 @@ return [
     'total' => 'Totaal',
     'created_at' => 'Aanmaakdatum',
     'updated_at' => 'bijgewerkt op',
+
+    'details_title' => 'Besteldetails nummer :code van :customer',
 ];

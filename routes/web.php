@@ -16,5 +16,6 @@ Route::middleware(['auth', 'language'])->group(function () {
         Route::livewire('/delivering', 'pages::orders.delivering.index')->name('delivering.index');
         Route::livewire('/pending', 'pages::orders.pending.index')->name('pending.index');
         Route::livewire('/preparing', 'pages::orders.preparing.index')->name('preparing.index');
+        Route::livewire('/{order}', 'pages::orders.show')->name('orders.show');
     });
 });
