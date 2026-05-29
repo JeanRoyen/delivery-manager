@@ -61,17 +61,17 @@ new class extends Component {
 ?>
 
 <x-general.section_with_title title="{{ __('sidebar.dashboard') }}">
-    <div class="space-y-4">
+    <div class="space-y-8">
         <section>
-            <h3>{{ __('dashboard.welcome', ['name' => ucfirst(Auth::user()->first_name)]) }}</h3>
+            <h3 class="text-3xl font-bold">{{ __('dashboard.welcome', ['name' => ucfirst(Auth::user()->first_name)]) }}</h3>
         </section>
         <section class="space-y-4">
-            <h3>Actions rapides</h3>
+            <h3 class="text-2xl">{{ __('dashboard.fast_actions') }}</h3>
             <x-dashboard.fast-action_card-list/>
         </section>
 
-        <section>
-            <h3>Dernière modifications de status des commandes</h3>
+        <section class="space-y-4">
+            <h3 class="text-2xl">{{ __('dashboard.latest_modifications') }}</h3>
             <flux:table>
                 <div class="flex gap-10 items-center">
                     <x-general.searchbar />
@@ -102,7 +102,7 @@ new class extends Component {
                             </flux:table.cell>
 
                             <flux:table.cell>
-                                {{ $order->created_at->format('d/m/Y H:i') }}
+                                {{ $order->updated_at->format('d/m/Y H:i') }}
                             </flux:table.cell>
 
                             <flux:table.cell>

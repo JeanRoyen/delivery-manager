@@ -7,4 +7,6 @@ return [
     'delivered_orders' => 'Archived orders',
 
     'welcome' => 'Hello :name !',
+    'latest_modifications' => 'Latest order status changes',
+    'fast_actions' => 'Quick actions',
 ];

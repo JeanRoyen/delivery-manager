@@ -7,4 +7,6 @@ return [
     'delivered_orders' => 'Gearchiveerde bestellingen',
 
     'welcome' => 'Hallo :name !',
+    'latest_modifications' => 'Laatste wijzigingen van bestelstatussen',
+    'fast_actions' => 'Snelle acties',
 ];
