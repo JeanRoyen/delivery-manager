@@ -8,11 +8,7 @@ use function __;
 class Pending extends OrderState
 {
     public static string $name = 'pending';
-
-    public function color(): string
-    {
-        return 'yellow';
-    }
+    public static string $color = 'yellow';
 
     public function label(): string
     {

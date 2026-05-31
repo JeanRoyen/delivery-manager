@@ -8,11 +8,8 @@ use function __;
 class Delivering extends OrderState
 {
     public static string $name = 'delivering';
+    public static string $color = 'lime';
 
-    public function color(): string
-    {
-        return 'lime';
-    }
 
     public function label(): string
     {

@@ -3,14 +3,12 @@
 namespace App\States\Order;
 
 
+use function __;
+
 class Delivered extends OrderState
 {
     public static string $name = 'delivered';
-
-    public function color(): string
-    {
-        return 'zinc';
-    }
+    public static string $color = 'zinc';
 
     public function label(): string
     {

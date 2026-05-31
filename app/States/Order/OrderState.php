@@ -12,8 +12,6 @@ use App\Models\Order;
  */
 abstract class OrderState extends State
 {
-    abstract public function color(): string;
-
     /**
      * @throws InvalidConfig
      */
