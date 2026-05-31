@@ -16,7 +16,6 @@ class OrderFactory extends Factory
     {
         return [
             'code' => $this->faker->ean8(),
-            'status_id' => $this->faker->numberBetween(1, 4),
             'total_amount' => $this->faker->numberBetween(500, 50000),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

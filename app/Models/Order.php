@@ -2,16 +2,21 @@
 
 namespace App\Models;
 
+use App\States\Order\OrderState;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\ModelStates\HasStates;
 
 class Order extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasStates;
 
+    protected $casts = [
+        'state' => OrderState::class,
+    ];
     protected $fillable = [
         'status',
         'total_amount',
@@ -19,6 +24,7 @@ class Order extends Model
         'total',
         'items',
         'orders',
+        'code',
     ];
 
     public function customer(): BelongsTo

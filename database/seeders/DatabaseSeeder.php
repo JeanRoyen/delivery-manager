@@ -34,23 +34,6 @@ class DatabaseSeeder extends Seeder
             'password' => 'test',
         ]);
 
-        Status::factory()->create([
-            'label' => 'pending',
-            'color' => 'yellow'
-        ]);
-        Status::factory()->create([
-            'label' => 'preparing',
-            'color' => 'sky'
-        ]);
-        Status::factory()->create([
-            'label' => 'delivering',
-            'color' => 'lime'
-        ]);
-        Status::factory()->create([
-            'label' => 'delivered',
-            'color' => 'zinc'
-        ]);
-
 
         Customer::factory()->count(100)->create();
         Product::factory()->count(100)->create();

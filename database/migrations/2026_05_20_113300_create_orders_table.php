@@ -9,10 +9,11 @@ return new class extends Migration {
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('status_id')->constrained();
-            $table->foreignId('customer_id')->constrained('customers');
             $table->string('code')->unique();
+            $table->foreignId('customer_id')->constrained('customers');
             $table->unsignedInteger('total_amount');
+            $table->string('state');
+
 
             $table->timestamps();
             $table->softDeletes();
