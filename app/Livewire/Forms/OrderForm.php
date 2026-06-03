@@ -2,36 +2,29 @@
 
 namespace App\Livewire\Forms;
 
-use App\Enums\OrderStatus;
 use App\Models\Order;
 use Akaunting\Money\Money;
+use App\Models\Status;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
-use function uniqid;
+use function str_pad;
 
 class OrderForm extends Form
 {
-    #[Validate('required|exists:customers,id')]
+    #[Validate('required')]
     public $customer_id;
 
-    #[Validate('required|array|min:1')]
-    public array $items = [];
+    #[Validate('required')]
+    public $total_amount;
 
     public function store(): void
     {
-        $this->validate([
-            'customer_id'          => 'required|exists:customers,id',
-            'items'                => 'required|array|min:1',
-            'items.*.product_id'   => 'required|exists:products,id',
-            'items.*.quantity'     => 'required|integer|min:1',
-        ]);
-
+        $this->validate();
         Order::create([
             'customer_id' => $this->customer_id,
-            'status'      => OrderStatus::PENDING,
-            'orders'      => uniqid(),
-            'total'       => $this->calculateTotal(),
-            'items'       => $this->items,
+            'status_id' => Status::PENDING,
+            'total_amount' => $this->total_amount,
+            'code' => $this->generateCode(),
         ]);
     }
 
@@ -41,5 +34,14 @@ class OrderForm extends Form
             $price = Money::EUR($item['price_in_cents']);
             return $price->multiply($item['quantity'])->getAmount();
         });
+    }
+
+    public function generateCode(): string
+    {
+        do {
+            $code = str_pad(mt_rand(1,99999999),8,'0',STR_PAD_LEFT);
+
+        } while (Order::where('code', $code)->exists());
+        return $code;
     }
 }
