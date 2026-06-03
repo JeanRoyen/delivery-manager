@@ -1,103 +1,149 @@
 <?php
 
+namespace App\Livewire;
+
 use App\Models\Customer;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Modelable;
 use Livewire\Component;
 
 new class extends Component {
     public string $search = '';
-    public ?int $selectedCustomerId = null;
-    public string $selectedCustomerName = '';
-    public string $selectedCustomerPhone = '';
-    public string $selectedCustomerEmail = '';
+
+    #[Modelable]
+    public ?int $value = null;
+
+    public bool $open = false;
 
     #[Computed]
     public function customers(): Collection
     {
         return Customer::query()
-            ->when($this->search, fn($q) => $q
-                ->where('name', 'like', "%{$this->search}%")
-                ->orWhere('email', 'like', "%{$this->search}%")
+            ->when(
+                $this->search,
+                fn ($query) => $query->where('name', 'like', '%' . $this->search . '%')
             )
-            ->orderBy('name', 'asc')
+            ->orderBy('name')
+            ->limit(20)
             ->get();
     }
 
-    public function selectCustomer(Customer $customer): void
+    #[Computed]
+    public function selectedCustomer(): ?Customer
     {
-        $this->selectedCustomerId = $customer->id;
-        $this->selectedCustomerName = $customer->name;
-        $this->selectedCustomerEmail = $customer->email;
-        $this->selectedCustomerPhone = $customer->phone;
+        if (!$this->value) {
+            return null;
+        }
+
+        return Customer::find($this->value);
+    }
+
+    public function updatedValue(): void
+    {
+        $this->open = false;
         $this->search = '';
     }
 
-    public function clearCustomer(): void
+    public function clear(): void
     {
-        $this->selectedCustomerId = null;
-        $this->selectedCustomerName = '';
-        $this->selectedCustomerEmail = '';
+        $this->value = null;
         $this->search = '';
     }
 };
 ?>
 
 <div
-    x-data="{ open: false }"
+    class="relative w-full"
+    x-data="{ open: @entangle('open') }"
     @click.outside="open = false"
-    class="relative"
 >
-    <flux:field>
-        <flux:label>Client</flux:label>
+    <div
+        @click="open = !open"
+        class="flex items-center justify-between w-full px-3 py-2 bg-white border rounded-lg cursor-pointer transition
+        {{
+            $errors->has('form.customer_id')
+                ? 'border-red-500 ring-1 ring-red-500'
+                : 'border-gray-300 hover:border-gray-400 focus-within:ring-2 focus-within:ring-blue-500'
+        }}"
+    >
+        <span class="{{ $this->selectedCustomer ? 'text-gray-900' : 'text-gray-400' }}">
+            {{ $this->selectedCustomer?->name ?: 'Sélectionner un client...' }}
+        </span>
 
-        {{-- Card client sélectionné --}}
-        <div
-            x-show="$wire.selectedCustomerId"
-            class="flex items-center justify-between w-full border border-zinc-200 rounded-lg px-4 py-2.5 bg-zinc-50"
-        >
-            <div class="flex items-center gap-3">
-                <span class="text-sm font-medium text-zinc-800">{{ $selectedCustomerName }}</span>
-                <p class="text-xs text-zinc-400">{{ $selectedCustomerEmail }} - {{ $selectedCustomerPhone }}</p>
-            </div>
-            <flux:button type="button" icon="x-mark" size="sm" variant="ghost" wire:click="clearCustomer" />
-        </div>
+        <div class="flex items-center gap-2">
+            @if($this->selectedCustomer)
 
-        {{-- Input + Dropdown --}}
-        <div x-show="!$wire.selectedCustomerId">
-            <flux:input
-                wire:model.live.debounce.300ms="search"
-                @focus="open = true"
-                placeholder="Rechercher un client..."
-                icon="magnifying-glass"
-            />
+                <button
+                    type="button"
+                    wire:click.stop="clear"
+                    class="text-gray-400 hover:text-gray-600"
+                >
+                    &times;
+                </button>
+            @endif
 
-            <div
-                x-show="open"
-                x-transition:enter="transition ease-out duration-100"
-                x-transition:enter-start="opacity-0 -translate-y-1"
-                x-transition:enter-end="opacity-100 translate-y-0"
-                x-cloak
-                class="absolute left-0 top-full w-full bg-white border border-zinc-200 rounded-lg mt-1 max-h-56 overflow-y-auto z-50 shadow-lg divide-y divide-zinc-100"
+            <svg
+                class="w-4 h-4 text-gray-400 transition-transform"
+                :class="{ 'rotate-180': open }"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
             >
-                @forelse($this->customers as $customer)
-                    <div
-                        wire:key="customer-{{ $customer->id }}"
-                        wire:click="selectCustomer({{ $customer->id }})"
-                        @click="open = false"
-                        class="flex items-center gap-3 px-4 py-2.5 hover:bg-zinc-50 cursor-pointer"
-                    >
-                        <p class="text-sm font-medium text-zinc-800">{{ $customer->name }}</p>
-                        <p class="text-xs text-zinc-400">{{ $customer->email }} - {{ $customer->phone }}</p>
-                    </div>
-                @empty
-                    <div class="px-4 py-6 text-sm text-zinc-400 text-center">
-                        Aucun client trouvé pour "{{ $search }}"
-                    </div>
-                @endforelse
-            </div>
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                />
+            </svg>
+        </div>
+    </div>
+
+    <div
+        x-show="open"
+        x-transition
+        class="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg"
+    >
+        <div class="p-2 border-b border-gray-100">
+            <input
+                type="text"
+                wire:model.live.debounce.300ms="search"
+                placeholder="Rechercher..."
+                class="w-full px-3 py-1.5 text-sm border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                @click.stop
+                x-init="$watch('open', value => value && setTimeout(() => $el.focus(), 50))"
+            />
         </div>
 
-        <flux:error name="selectedCustomerId" />
-    </flux:field>
+        <ul class="max-h-56 overflow-y-auto py-1">
+            @forelse($this->customers as $customer)
+                <li wire:key="{{ $customer->id }}">
+                    <label
+                        class="flex items-center w-full px-3 py-2 text-sm cursor-pointer transition hover:bg-blue-50
+                        {{
+                            $value === $customer->id
+                                ? 'bg-blue-100 text-blue-700 font-medium'
+                                : 'text-gray-700'
+                        }}"
+                    >
+                        <input
+                            type="radio"
+                            wire:model.live="value"
+                            value="{{ $customer->id }}"
+                            class="sr-only"
+                        >
+
+                        <span class="truncate">
+                            {{ $customer->name }}
+                        </span>
+                    </label>
+                </li>
+            @empty
+                <li class="px-3 py-2 text-sm text-gray-400">
+                    Aucun résultat
+                </li>
+            @endforelse
+        </ul>
+    </div>
 </div>

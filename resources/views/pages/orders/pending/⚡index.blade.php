@@ -4,7 +4,7 @@ use App\Models\Order;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
-use App\Models\Status;
+use App\States\Order\Pending;
 
 new class extends Component {
     public function render()
@@ -16,5 +16,5 @@ new class extends Component {
 ?>
 
 <x-general.section_with_title title="{{ __('order.pending_title') }}">
-    <livewire:order.table :statusId="Status::PENDING"/>
+    <livewire:order.table :state="Pending::class"/>
 </x-general.section_with_title>

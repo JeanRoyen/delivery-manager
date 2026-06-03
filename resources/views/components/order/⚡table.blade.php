@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Order;
-use App\Models\Status;
+use App\States\Order\Pending;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
@@ -11,9 +11,9 @@ use Livewire\WithPagination;
 new class extends Component {
     use WithPagination;
 
-    public int $statusId;
+    public ?string $state;
 
-    public string $sortBy = 'created_at';
+    public string $sortBy = 'updated_at';
 
     public string $sortDirection = 'desc';
 
@@ -39,14 +39,14 @@ new class extends Component {
     public function orders(): LengthAwarePaginator
     {
         return Order::query()
-            ->with(['status', 'customer'])
-            ->when($this->statusId, fn($query) => $query->where('status_id', $this->statusId))
+            ->with(['customer'])
+            ->whereState('state', $this->state)
             ->when($this->search, function ($query) {
                 $query->where(function ($q) {
-                    $q->where('code', 'like', "%{$this->search}%")
-                        ->orWhere('id', 'like', "%{$this->search}%")
+                    $q->where('code', 'like', "%$this->search%")
+                        ->orWhere('id', 'like', "%$this->search%")
                         ->orWhereHas('customer', function ($customer) {
-                            $customer->where('name', 'like', "%{$this->search}%");
+                            $customer->where('name', 'like', "%$this->search%");
                         });
                 });
             })
@@ -67,8 +67,8 @@ new class extends Component {
                                wire:click="sort('code')">ID
             </flux:table.column>
             <flux:table.column align="center">{{ __('order.customer') }}</flux:table.column>
-            <flux:table.column align="center" sortable :sorted="$sortBy === 'created_at'" :direction="$sortDirection"
-                               wire:click="sort('created_at')">{{ __('order.created_at') }}</flux:table.column>
+            <flux:table.column align="center" sortable :sorted="$sortBy === 'updated_at'" :direction="$sortDirection"
+                               wire:click="sort('updated_at')">{{ __('order.updated_at') }}</flux:table.column>
             <flux:table.column align="center">{{ __('order.status') }}</flux:table.column>
             <flux:table.column align="center">{{ __('order.total') }}</flux:table.column>
             <flux:table.column align="center">{{ __('order.see_order') }}</flux:table.column>
@@ -79,19 +79,19 @@ new class extends Component {
             @foreach($this->orders as $order)
                 <flux:table.row align="center">
                     <flux:table.cell>
-                        {{ $order->code }}
+                        <flux:link :href="route('orders.show', $order)">{{ $order->code }} </flux:link>
                     </flux:table.cell>
                     <flux:table.cell>
-                        {{ $order->customer->name }}
-                    </flux:table.cell>
-
-                    <flux:table.cell>
-                        {{ $order->created_at->format('d/m/Y H:i') }}
+                        <flux:link :href="route('orders.show', $order)">{{ $order->customer->name }}</flux:link>
                     </flux:table.cell>
 
                     <flux:table.cell>
-                        <flux:badge color="{{ $order->status->color }}">
-                            {{ __('order_status.' . $order->status->label) }}
+                        {{ $order->updated_at->format('d/m/Y H:i') }}
+                    </flux:table.cell>
+
+                    <flux:table.cell>
+                        <flux:badge color="{{ $order->state->color() }}">
+                            {{ $order->state->label() }}
                         </flux:badge>
                     </flux:table.cell>
 
@@ -103,7 +103,7 @@ new class extends Component {
                         <flux:button
                             size="sm"
                             icon="eye"
-                            :href="route('orders.show', $order)"
+                            :hr ef="route('orders.show', $order)"
                             wire:navigate
                         />
                     </flux:table.cell>

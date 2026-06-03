@@ -5,7 +5,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
-use App\Models\Status;
+use App\States\Order\Delivered;
 
 new class extends Component {
 
@@ -19,5 +19,5 @@ new class extends Component {
 ?>
 
 <x-general.section_with_title title="{{ __('order.delivered_title') }}">
-    <livewire:order.table :statusId="Status::DELIVERED"/>
+    <livewire:order.table :state="Delivered::class"/>
 </x-general.section_with_title>

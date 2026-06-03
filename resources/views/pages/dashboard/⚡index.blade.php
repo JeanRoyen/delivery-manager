@@ -43,8 +43,7 @@ new class extends Component {
     public function orders(): LengthAwarePaginator
     {
         return Order::query()
-            ->with(['status', 'customer'])
-            ->when(Status::DELIVERED, fn($query) => $query->whereNot('status_id', Status::DELIVERED))
+            ->with('customer'])
             ->when($this->search, function ($query) {
                 $query->where(function ($q) {
                     $q->where('code', 'like', "%{$this->search}%")
