@@ -15,4 +15,9 @@ class Delivering extends OrderState
     {
         return __('order_status.delivering');
     }
+
+    public function color(): string
+    {
+        return 'lime';
+    }
 }

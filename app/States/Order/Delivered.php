@@ -14,4 +14,9 @@ class Delivered extends OrderState
     {
         return __('order_status.delivered');
     }
+
+    public function color()
+    {
+        return 'zinc';
+    }
 }

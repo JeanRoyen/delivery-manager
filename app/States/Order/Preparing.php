@@ -14,4 +14,9 @@ class Preparing extends OrderState
     {
         return __('order_status.preparing');
     }
+
+    public function color()
+    {
+      return 'sky';
+    }
 }
