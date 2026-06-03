@@ -14,6 +14,6 @@ return [
     'updated_at' => 'Updated at',
     'total' => 'Total',
 
-    'details_title' => 'Order details number :code for :customer',
+    'details_title' => 'Order details for :customer',
     'see_order' => 'View order',
     ];

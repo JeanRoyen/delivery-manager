@@ -14,6 +14,6 @@ return [
     'updated_at' => 'Date de modification',
     'total' => 'Total',
 
-    'details_title' => 'Détails de la commande numéro :code de :customer',
+    'details_title' => 'Détails de la commande de :customer',
     'see_order' => 'Voir la commande',
     ];

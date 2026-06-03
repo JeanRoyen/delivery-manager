@@ -14,6 +14,6 @@ return [
     'created_at' => 'Aanmaakdatum',
     'updated_at' => 'bijgewerkt op',
 
-    'details_title' => 'Besteldetails nummer :code van :customer',
+    'details_title' => 'Besteldetails van :customer',
     'see_order' => 'Bestelling bekijken',
 ];
