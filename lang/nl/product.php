@@ -4,7 +4,7 @@ return [
     'product_list' => 'Productlijst',
     'search_placeholder' => 'Zoeken...',
 
-    'id' => 'Identificatie',
+    'id' => 'Productreferentie',
     'name' => 'Naam',
     'description' => 'Beschrijving',
     'price' => 'Prijs',

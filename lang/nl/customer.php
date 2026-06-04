@@ -5,7 +5,7 @@ return [
     'search_placeholder' => 'Zoeken...',
     'add_customer' => 'Klant toevoegen',
 
-    'id' => 'ID',
+    'id' => 'Referentieklant',
     'customer_name' => 'Klantnaam',
     'address' => 'Adres',
     'email' => 'E-mailadres',

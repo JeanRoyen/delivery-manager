@@ -5,7 +5,7 @@ return [
     'search_placeholder' => 'Rechercher...',
     'add_customer' => 'Ajouter un client',
 
-    'id' => 'Identifiant',
+    'id' => 'Référence client',
     'customer_name' => 'Nom du client',
     'address' => 'Adresse',
     'email' => 'Adresse mail',

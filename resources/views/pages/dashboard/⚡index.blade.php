@@ -45,18 +45,17 @@ new class extends Component {
     {
         return Order::query()
             ->with('customer')
-        ->whereNotState('state', Delivered::class)
-        ->when($this->search, function ($query) {
-            $query->where(function ($q) {
-                $q->where('code', 'like', "%{$this->search}%")
-                    ->orWhere('id', 'like', "%{$this->search}%")
-                    ->orWhereHas('customer', function ($customer) {
-                        $customer->where('name', 'like', "%{$this->search}%");
-                    });
-            });
-        })
-        ->orderBy($this->sortBy, $this->sortDirection)
-        ->paginate(5);
+            ->when($this->search, function ($query) {
+                $query->where(function ($q) {
+                    $q->where('code', 'like', "%{$this->search}%")
+                        ->orWhere('id', 'like', "%{$this->search}%")
+                        ->orWhereHas('customer', function ($customer) {
+                            $customer->where('name', 'like', "%{$this->search}%");
+                        });
+                });
+            })
+            ->orderBy($this->sortBy, $this->sortDirection)
+            ->paginate(10);
     }
 };
 ?>
@@ -95,10 +94,10 @@ new class extends Component {
                     @foreach($this->orders as $order)
                         <flux:table.row align="center">
                             <flux:table.cell>
-                                {{ $order->code }}
+                                <flux:link :href="route('orders.show', $order)">{{ $order->code }} </flux:link>
                             </flux:table.cell>
                             <flux:table.cell>
-                                {{ $order->customer->name }}
+                                <flux:link :href="route('orders.show', $order)">{{ $order->customer->name }} </flux:link>
                             </flux:table.cell>
 
                             <flux:table.cell>

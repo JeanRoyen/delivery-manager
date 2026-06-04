@@ -4,7 +4,7 @@ return [
     'product_list' => 'Product list',
     'search_placeholder' => 'Search...',
 
-    'id' => 'Identifier',
+    'id' => 'Product reference',
     'name' => 'Name',
     'description' => 'Description',
     'price' => 'Price',
