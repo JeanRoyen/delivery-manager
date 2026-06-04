@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Order;
+use App\States\Order\Delivered;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -43,18 +44,19 @@ new class extends Component {
     public function orders(): LengthAwarePaginator
     {
         return Order::query()
-            ->with('customer'])
-            ->when($this->search, function ($query) {
-                $query->where(function ($q) {
-                    $q->where('code', 'like', "%{$this->search}%")
-                        ->orWhere('id', 'like', "%{$this->search}%")
-                        ->orWhereHas('customer', function ($customer) {
-                            $customer->where('name', 'like', "%{$this->search}%");
-                        });
-                });
-            })
-            ->orderBy($this->sortBy, $this->sortDirection)
-            ->paginate(5);
+            ->with('customer')
+        ->whereNotState('state', Delivered::class)
+        ->when($this->search, function ($query) {
+            $query->where(function ($q) {
+                $q->where('code', 'like', "%{$this->search}%")
+                    ->orWhere('id', 'like', "%{$this->search}%")
+                    ->orWhereHas('customer', function ($customer) {
+                        $customer->where('name', 'like', "%{$this->search}%");
+                    });
+            });
+        })
+        ->orderBy($this->sortBy, $this->sortDirection)
+        ->paginate(5);
     }
 };
 ?>
@@ -66,7 +68,7 @@ new class extends Component {
         </section>
         <section class="space-y-4">
             <h3 class="text-2xl">{{ __('dashboard.fast_actions') }}</h3>
-            <x-dashboard.fast-action_card-list/>
+            <x-dashboard.fast-action_card-list />
         </section>
 
         <section class="space-y-4">
@@ -81,7 +83,8 @@ new class extends Component {
                                        wire:click="sort('code')">ID
                     </flux:table.column>
                     <flux:table.column align="center">{{ __('order.customer') }}</flux:table.column>
-                    <flux:table.column align="center" sortable :sorted="$sortBy === 'created_at'" :direction="$sortDirection"
+                    <flux:table.column align="center" sortable :sorted="$sortBy === 'created_at'"
+                                       :direction="$sortDirection"
                                        wire:click="sort('created_at')">{{ __('order.updated_at') }}</flux:table.column>
                     <flux:table.column align="center">{{ __('order.status') }}</flux:table.column>
                     <flux:table.column align="center">{{ __('order.total') }}</flux:table.column>
@@ -103,8 +106,8 @@ new class extends Component {
                             </flux:table.cell>
 
                             <flux:table.cell>
-                                <flux:badge color="{{ $order->status->color }}">
-                                    {{ __('order_status.' . $order->status->label) }}
+                                <flux:badge color="{{ $order->state->color() }}">
+                                    {{ __($order->state->label()) }}
                                 </flux:badge>
                             </flux:table.cell>
 
