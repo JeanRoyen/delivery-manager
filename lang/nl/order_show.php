@@ -12,6 +12,7 @@ return [
         'start_preparation' => 'Voorbereiding starten',
         'start_delivery' => 'Verzenden voor levering',
         'mark_delivered' => 'Markeren als geleverd',
+        'delivery_status' => 'Leveringsstatus',
     ],
 
     'customer' => [

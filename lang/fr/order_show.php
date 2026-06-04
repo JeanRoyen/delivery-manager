@@ -12,6 +12,7 @@ return [
         'start_preparation' => 'Commencer la préparation',
         'start_delivery' => 'Envoyer en livraison',
         'mark_delivered' => 'Marquer comme livrée',
+        'delivery_status' => 'État de la livraison',
     ],
 
     'customer' => [

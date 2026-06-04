@@ -3,6 +3,6 @@
 return [
     'pending' => 'Pending',
     'preparing' => 'Preparing',
-    'delivering' => 'In progress',
+    'delivering' => 'Delivery',
     'delivered' => 'Completed',
 ];

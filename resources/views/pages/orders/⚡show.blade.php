@@ -56,10 +56,13 @@ new class extends Component {
                         {{ __('order_show.order.see_command') }}
                     </flux:text>
                 </div>
+                <div class="flex items-center gap-3">
+                    <flux:text>{{ __('order_show.order.delivery_status') }} : </flux:text>
+                    <flux:badge size="lg" color="{{ $order->state->color() }}">
+                        {{ $order->state->label() }}
+                    </flux:badge>
+                </div>
 
-                <flux:badge size="lg" color="{{ $order->state->color() }}">
-                    {{ $order->state->label() }}
-                </flux:badge>
             </div>
             <flux:heading size="lg">
                 {{ __('order_show.customer.informations') }}
