@@ -21,8 +21,8 @@ class OrderItemFactory extends Factory
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 
-            'order_id' => Order::factory(),
-            'product_id' => Product::factory(),
+            'order_id' => $this->faker->numberBetween(1, 200),
+            'product_id' => $this->faker->numberBetween(1, 200),
         ];
     }
 }
