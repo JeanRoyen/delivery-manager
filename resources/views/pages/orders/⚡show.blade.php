@@ -20,6 +20,17 @@ new class extends Component {
         return $this->view()->title('Delivery Manager | ' . $this->order->code);
     }
 
+    #[Computed]
+    public function items()
+    {
+        return $this->order
+            ->items()
+            ->with('product')
+            ->get();
+
+    }
+
+
     public function updateState($stateClass, $redirect): void
     {
         $this->order->state->transitionTo($stateClass);
@@ -28,12 +39,6 @@ new class extends Component {
 
         $this->redirect(route($redirect));
 
-    }
-
-    #[Computed]
-    public function products(): Collection
-    {
-        return Product::all();
     }
 };
 ?>
@@ -124,6 +129,36 @@ new class extends Component {
                     <flux:table.column>{{ __('order_show.product.price') }}</flux:table.column>
                     <flux:table.column>{{ __('order_show.general.actions') }}</flux:table.column>
                 </flux:table.columns>
+
+                <flux:table.rows>
+
+                    @foreach($this->items as $item)
+                        <flux:table.row>
+
+                            <flux:table.cell>
+                                {{ $item->product->id }}
+                            </flux:table.cell>
+
+                            <flux:table.cell>
+                                {{ $item->product->name }}
+                            </flux:table.cell>
+
+                            <flux:table.cell>
+                                {{ $item->quantity }}
+                            </flux:table.cell>
+
+                            <flux:table.cell>
+                                {{ Number::currency($item->unit_price, 'EUR') }}
+                            </flux:table.cell>
+
+                            <flux:table.cell>
+                                {{ Number::currency($item->total_price, 'EUR') }}
+                            </flux:table.cell>
+
+                        </flux:table.row>
+                    @endforeach
+
+                </flux:table.rows>
 
             </flux:table>
 
