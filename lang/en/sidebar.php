@@ -10,6 +10,7 @@ return [
     'preparation' => 'Preparation',
     'deliveries' => 'Deliveries',
     'history' => 'History',
+    'failed' => 'Failed',
 
     'new_command' => 'Create an order',
 

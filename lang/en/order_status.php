@@ -5,4 +5,5 @@ return [
     'preparing' => 'Preparing',
     'delivering' => 'Delivery',
     'delivered' => 'Completed',
+    'failed' => 'Incident',
 ];

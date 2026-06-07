@@ -12,7 +12,9 @@ return [
         'start_preparation' => 'Start preparation',
         'start_delivery' => 'Send for delivery',
         'mark_delivered' => 'Mark as delivered',
-        'delivery_status' => 'Delivery status',    ],
+        'delivery_status' => 'Delivery status',
+        'failed_status' => 'Report an incident',
+        ],
 
     'customer' => [
         'informations' => 'Customer information',

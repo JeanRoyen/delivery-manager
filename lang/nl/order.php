@@ -5,6 +5,7 @@ return [
     'preparing_title' => 'Bestellingen in voorbereiding',
     'delivering_title' => 'Bestellingen in levering',
     'delivered_title' => 'Geleverde bestellingen',
+    'failed_title' => 'Bestellingen met incidenten',
 
     'id' => 'ID',
     'customer' => 'Klant',

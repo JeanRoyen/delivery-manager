@@ -5,6 +5,7 @@ return [
     'preparing_title' => 'Preparing orders',
     'delivering_title' => 'Delivering orders',
     'delivered_title' => 'Delivered orders',
+    'failed_title' => 'Orders with incidents',
 
     'id' => 'ID',
     'customer' => 'Customer',

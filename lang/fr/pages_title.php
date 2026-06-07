@@ -14,4 +14,5 @@ return [
     'orders_delivering' => 'Commandes en cours de livraison',
     'orders_pending' => 'Commandes en attente',
     'orders_preparing' => 'Commandes en préparation',
+    'orders_failed' => 'Commandes avec incident',
 ];

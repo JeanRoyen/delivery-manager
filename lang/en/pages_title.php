@@ -14,4 +14,5 @@ return [
     'orders_delivering' => 'Delivering orders',
     'orders_pending' => 'Pending orders',
     'orders_preparing' => 'Preparing orders',
+    'failed_orders' => 'Orders with incidents',
 ];

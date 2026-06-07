@@ -14,4 +14,5 @@ return [
     'orders_delivering' => 'Bestellingen in levering',
     'orders_pending' => 'Bestellingen in wachtrij',
     'orders_preparing' => 'Bestellingen in voorbereiding',
+    'failed_orders' => 'Bestellingen met incidenten',
 ];

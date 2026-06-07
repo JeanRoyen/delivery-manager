@@ -13,6 +13,7 @@ return [
         'start_delivery' => 'Verzenden voor levering',
         'mark_delivered' => 'Markeren als geleverd',
         'delivery_status' => 'Leveringsstatus',
+        'failed_status' => 'Een incident melden',
     ],
 
     'customer' => [

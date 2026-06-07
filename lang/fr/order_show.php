@@ -13,6 +13,7 @@ return [
         'start_delivery' => 'Envoyer en livraison',
         'mark_delivered' => 'Marquer comme livrée',
         'delivery_status' => 'État de la livraison',
+        'failed_status' => 'Signaler un incident',
     ],
 
     'customer' => [

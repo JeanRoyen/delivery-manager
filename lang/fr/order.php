@@ -5,6 +5,7 @@ return [
     'preparing_title' => 'Commandes en préparation',
     'delivering_title' => 'Commandes en livraison',
     'delivered_title' => 'Commandes livrées',
+    'failed_title' => 'Commandes avec incidents',
 
     'id' => 'ID',
     'customer' => 'Client',

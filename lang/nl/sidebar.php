@@ -10,6 +10,7 @@ return [
     'preparation' => 'Voorbereiding',
     'deliveries' => 'Leveringen',
     'history' => 'Geschiedenis',
+    'failed' => 'Mislukt',
 
     'new_command' => 'Bestelling aanmaken',
 
