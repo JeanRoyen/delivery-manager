@@ -103,7 +103,7 @@ new class extends Component {
                         <flux:button
                             size="sm"
                             icon="eye"
-                            :hr ef="route('orders.show', $order)"
+                            :href="route('orders.show', $order)"
                             wire:navigate
                         />
                     </flux:table.cell>
