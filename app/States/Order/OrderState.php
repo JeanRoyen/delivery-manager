@@ -21,6 +21,7 @@ abstract class OrderState extends State
             ->default(Pending::class)
             ->allowTransition(Pending::class, Preparing::class)
             ->allowTransition(Preparing::class, Delivering::class)
-            ->allowTransition(Delivering::class, Delivered::class);
+            ->allowTransition(Delivering::class, Delivered::class)
+            ->allowTransition([Pending::class, Delivering::class, Preparing::class], Failed::class);
     }
 }

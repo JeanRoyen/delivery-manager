@@ -1,5 +1,7 @@
 <?php
+
 use App\Models\Order;
+use App\States\Order\Failed;
 use App\States\Order\Pending;
 use App\States\Order\Preparing;
 use App\States\Order\Delivering;
@@ -18,6 +20,7 @@ new class extends Component {
             Preparing::class,
             Delivering::class,
             Delivered::class,
+            Failed::class,
         ];
 
         $counts = Order::query()
@@ -26,8 +29,8 @@ new class extends Component {
             ->groupBy('state')
             ->pluck('count', 'state');
 
-        return collect($states)->map(fn ($stateClass) => (object) [
-            'key'   => $stateClass::$name,
+        return collect($states)->map(fn($stateClass) => (object)[
+            'key' => $stateClass::$name,
             'count' => $counts[$stateClass::$name] ?? 0,
             'color' => $stateClass::$color,
             'label' => __('order_status.' . $stateClass::$name),

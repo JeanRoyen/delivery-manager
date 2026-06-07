@@ -33,5 +33,8 @@
         <flux:sidebar.item href="{{ route('delivered.index') }}">
             {{ __('sidebar.history') }}
         </flux:sidebar.item>
+        <flux:sidebar.item href="{{ route('failed.index') }}">
+            {{ __('sidebar.failed') }}
+        </flux:sidebar.item>
     </flux:sidebar.group>
 </flux:sidebar.nav>

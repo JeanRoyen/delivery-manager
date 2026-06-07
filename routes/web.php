@@ -13,6 +13,7 @@ Route::middleware(['auth', 'language'])->group(function () {
     Route::prefix('orders')->group(function () {
         Route::livewire('/create', 'pages::orders.create')->name('orders.create');
         Route::livewire('/delivered', 'pages::orders.delivered.index')->name('delivered.index');
+        Route::livewire('/failed', 'pages::orders.failed.index')->name('failed.index');
         Route::livewire('/delivering', 'pages::orders.delivering.index')->name('delivering.index');
         Route::livewire('/pending', 'pages::orders.pending.index')->name('pending.index');
         Route::livewire('/preparing', 'pages::orders.preparing.index')->name('preparing.index');

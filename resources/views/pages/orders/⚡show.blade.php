@@ -27,6 +27,7 @@ new class extends Component {
         $this->order->refresh();
 
         $this->redirect(route($redirect));
+
     }
 
     #[Computed]
@@ -57,7 +58,7 @@ new class extends Component {
                     </flux:text>
                 </div>
                 <div class="flex items-center gap-3">
-                    <flux:text>{{ __('order_show.order.delivery_status') }} : </flux:text>
+                    <flux:text>{{ __('order_show.order.delivery_status') }} :</flux:text>
                     <flux:badge size="lg" color="{{ $order->state->color() }}">
                         {{ $order->state->label() }}
                     </flux:badge>
@@ -139,9 +140,10 @@ new class extends Component {
                         {{ Number::currency($order->total_amount, 'EUR') }}
                     </div>
                 </div>
-
-                <x-order.state_button :order="$order"/>
-
+                <div class="flex gap-4">
+                    <x-order.failed_button :order="$order" />
+                    <x-order.state_button :order="$order" />
+                </div>
             </div>
         </div>
     </flux:card>
