@@ -8,7 +8,8 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\Modelable;
 use Livewire\Component;
 
-new class extends Component {
+new class extends Component
+{
     public string $search = '';
 
     #[Modelable]
@@ -22,7 +23,7 @@ new class extends Component {
         return Customer::query()
             ->when(
                 $this->search,
-                fn ($query) => $query->where('name', 'like', '%' . $this->search . '%')
+                fn ($query) => $query->where('name', 'like', '%'.$this->search.'%')
             )
             ->orderBy('name')
             ->limit(20)
@@ -32,7 +33,7 @@ new class extends Component {
     #[Computed]
     public function selectedCustomer(): ?Customer
     {
-        if (!$this->value) {
+        if (! $this->value) {
             return null;
         }
 
@@ -49,6 +50,7 @@ new class extends Component {
     {
         $this->value = null;
         $this->search = '';
+        $this->open = true;
     }
 };
 ?>
@@ -68,16 +70,17 @@ new class extends Component {
         }}"
     >
         <span class="{{ $this->selectedCustomer ? 'text-gray-900' : 'text-gray-400' }}">
-            {{ $this->selectedCustomer?->name ?: 'Sélectionner un client...' }}
+            {{ $this->selectedCustomer?->name ?: __('form.select_customer') }}
         </span>
 
         <div class="flex items-center gap-2">
-            @if($this->selectedCustomer)
+            @if($this->selectedCustomer || $search)
 
                 <button
                     type="button"
                     wire:click.stop="clear"
                     class="text-gray-400 hover:text-gray-600"
+                    aria-label="{{ __('form.clear_customer_search') }}"
                 >
                     &times;
                 </button>
@@ -109,7 +112,7 @@ new class extends Component {
             <input
                 type="text"
                 wire:model.live.debounce.300ms="search"
-                placeholder="Rechercher..."
+                placeholder="{{ __('form.search') }}"
                 class="w-full px-3 py-1.5 text-sm border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 @click.stop
                 x-init="$watch('open', value => value && setTimeout(() => $el.focus(), 50))"
@@ -141,7 +144,7 @@ new class extends Component {
                 </li>
             @empty
                 <li class="px-3 py-2 text-sm text-gray-400">
-                    Aucun résultat
+                    {{ __('form.no_customer_found') }}
                 </li>
             @endforelse
         </ul>
