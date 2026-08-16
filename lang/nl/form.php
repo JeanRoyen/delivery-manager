@@ -4,6 +4,10 @@ return [
     'customer_create_title' => 'Nieuwe klant aanmaken',
     'product_create_title' => 'Nieuw product aanmaken',
     'order_create_title' => 'Nieuwe bestelling aanmaken',
+    'customer_information' => 'Klantgegevens',
+    'customer_information_description' => 'Vul de contactgegevens van de nieuwe klant in.',
+    'product_information' => 'Productgegevens',
+    'product_information_description' => 'Vul de gegevens van het nieuwe product in.',
 
     'name' => 'Naam',
     'description' => 'Beschrijving',

@@ -4,6 +4,10 @@ return [
     'customer_create_title' => 'Création d’un nouveau client',
     'product_create_title' => 'Création d’un nouveau produit',
     'order_create_title' => 'Création d’une nouvelle commande',
+    'customer_information' => 'Informations du client',
+    'customer_information_description' => 'Renseignez les coordonnées du nouveau client.',
+    'product_information' => 'Informations du produit',
+    'product_information_description' => 'Renseignez les informations du nouveau produit.',
 
     'name' => 'Nom',
     'description' => 'Description',
