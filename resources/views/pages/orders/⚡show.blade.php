@@ -1,23 +1,17 @@
 <?php
 
 use App\Models\Order;
-use App\Models\Product;
-use App\Models\Status;
-use App\States\Order\Delivered;
-use App\States\Order\Delivering;
-use App\States\Order\Pending;
-use App\States\Order\Preparing;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
-new class extends Component {
+new class extends Component
+{
     public Order $order;
 
     public function render(): View
     {
-        return $this->view()->title('Delivery Manager | ' . $this->order->code);
+        return $this->view()->title('Delivery Manager | '.$this->order->code);
     }
 
     #[Computed]
@@ -30,6 +24,15 @@ new class extends Component {
 
     }
 
+    #[Computed]
+    public function histories()
+    {
+        return $this->order
+            ->histories()
+            ->with('user')
+            ->latest()
+            ->get();
+    }
 
     public function updateState($stateClass, $redirect): void
     {
@@ -164,6 +167,42 @@ new class extends Component {
 
             <flux:separator />
 
+            <div class="space-y-4">
+                <flux:heading size="lg">
+                    {{ __('order_show.history.title') }}
+                </flux:heading>
+
+                <div class="space-y-3">
+                    @forelse($this->histories as $history)
+                        <div class="flex gap-4 rounded-lg bg-zinc-50 p-4 dark:bg-zinc-800/50">
+                            <div class="mt-2 size-2 shrink-0 rounded-full bg-indigo-500"></div>
+
+                            <div class="flex-1 space-y-1">
+                                <div class="font-medium">
+                                    {{ __('order_status.' . $history->from_state) }}
+                                    <span class="mx-2 text-zinc-400">→</span>
+                                    {{ __('order_status.' . $history->to_state) }}
+                                </div>
+
+                                <flux:text size="sm">
+                                    @if($history->user)
+                                        {{ __('order_show.history.changed_by', [
+                                            'user' => ucfirst($history->user->first_name) . ' ' . ucfirst($history->user->last_name),
+                                        ]) }}
+                                        ·
+                                    @endif
+                                    {{ $history->created_at->format('d/m/Y H:i') }}
+                                </flux:text>
+                            </div>
+                        </div>
+                    @empty
+                        <flux:text>{{ __('order_show.history.empty') }}</flux:text>
+                    @endforelse
+                </div>
+            </div>
+
+            <flux:separator />
+
             <div class="flex justify-between items-center">
 
                 <div class="space-y-1">
@@ -184,4 +223,3 @@ new class extends Component {
     </flux:card>
 
 </x-general.section_with_title>
-

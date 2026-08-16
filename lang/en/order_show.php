@@ -36,4 +36,10 @@ return [
         'see_more' => 'See more',
     ],
 
+    'history' => [
+        'title' => 'Order history',
+        'changed_by' => 'Changed by :user',
+        'empty' => 'No state change has been recorded.',
+    ],
+
 ];

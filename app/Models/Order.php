@@ -17,6 +17,7 @@ class Order extends Model
     protected $casts = [
         'state' => OrderState::class,
     ];
+
     protected $fillable = [
         'status',
         'total_amount',
@@ -25,6 +26,9 @@ class Order extends Model
         'items',
         'orders',
         'code',
+        'user_id',
+        'from_state',
+        'to_state',
     ];
 
     public function customer(): BelongsTo
@@ -32,8 +36,13 @@ class Order extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function items():HasMany
+    public function items(): HasMany
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function histories(): HasMany
+    {
+        return $this->hasMany(OrderHistory::class);
     }
 }

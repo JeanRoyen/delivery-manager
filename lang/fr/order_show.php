@@ -36,4 +36,10 @@ return [
         'see_more' => 'Voir plus',
     ],
 
+    'history' => [
+        'title' => 'Historique de la commande',
+        'changed_by' => 'Modifié par :user',
+        'empty' => 'Aucun changement d’état enregistré.',
+    ],
+
 ];

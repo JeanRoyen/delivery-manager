@@ -36,4 +36,10 @@ return [
         'see_more' => 'Meer bekijken',
     ],
 
+    'history' => [
+        'title' => 'Bestelgeschiedenis',
+        'changed_by' => 'Gewijzigd door :user',
+        'empty' => 'Er is nog geen statuswijziging geregistreerd.',
+    ],
+
 ];
