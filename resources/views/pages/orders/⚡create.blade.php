@@ -62,10 +62,12 @@ new class extends Component
                     </div>
 
                     <div class="max-w-2xl">
-                        <livewire:form.search_customers
-                            wire:model.live="form.customer_id"
-                            :key="'order-customer'"
-                        />
+                        <x-form.input_required name="form.customer_id" :label="__('form.customer')">
+                            <livewire:form.search_customers
+                                wire:model.live="form.customer_id"
+                                :key="'order-customer'"
+                            />
+                        </x-form.input_required>
                     </div>
 
                     <div class="grid grid-cols-1 gap-4 rounded-xl bg-zinc-50 p-4 sm:grid-cols-2 xl:grid-cols-4 dark:bg-zinc-800/50">
@@ -133,10 +135,12 @@ new class extends Component
                                 wire:key="order-item-{{ $index }}"
                                 class="grid grid-cols-1 items-start gap-4 rounded-xl bg-zinc-50 p-4 md:grid-cols-[minmax(0,1fr)_8rem_10rem_auto] dark:bg-zinc-800/50"
                             >
-                                <div>
+                                <x-form.input_required
+                                    name="form.items.{{ $index }}.product_id"
+                                    :label="__('form.product')"
+                                >
                                     <flux:select
                                         wire:model.live="form.items.{{ $index }}.product_id"
-                                        :label="__('form.product')"
                                         placeholder="{{ __('form.select_product') }}"
                                     >
                                         @foreach($this->products as $product)
@@ -145,17 +149,16 @@ new class extends Component
                                             </flux:select.option>
                                         @endforeach
                                     </flux:select>
-                                </div>
+                                </x-form.input_required>
 
-                                <div>
-                                    <flux:input
-                                        type="number"
-                                        min="1"
-                                        max="999"
-                                        wire:model.live.debounce.250ms="form.items.{{ $index }}.quantity"
-                                        :label="__('form.quantity')"
-                                    />
-                                </div>
+                                <x-form.input_required
+                                    name="form.items.{{ $index }}.quantity"
+                                    :label="__('form.quantity')"
+                                    type="number"
+                                    min="1"
+                                    max="999"
+                                    wire:model.live.debounce.250ms="form.items.{{ $index }}.quantity"
+                                />
 
                                 <div class="space-y-2 md:pt-1">
                                     <flux:label>{{ __('form.subtotal') }}</flux:label>

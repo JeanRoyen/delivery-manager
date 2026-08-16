@@ -10,11 +10,15 @@
         {{ $label }}
     </flux:label>
 
-    <flux:input
-        :type="$type"
-        {{ $attributes }}
-        required
-    />
+    @if($slot->isNotEmpty())
+        {{ $slot }}
+    @else
+        <flux:input
+            :type="$type"
+            {{ $attributes }}
+            required
+        />
+    @endif
 
     <flux:error :name="$name" />
 
