@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'edit' => 'Modifier',
     'customer_list' => 'Liste des clients',
     'search_placeholder' => 'Rechercher...',
     'add_customer' => 'Ajouter un client',
@@ -14,4 +15,4 @@ return [
 
     'delete' => 'Supprimer',
     'delete_confirm' => 'Êtes-vous sûr de vouloir supprimer : ',
-    ];
+];

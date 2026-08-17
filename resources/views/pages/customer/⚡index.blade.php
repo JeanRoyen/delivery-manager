@@ -1,17 +1,17 @@
 <?php
 
 use App\Models\Customer;
-use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
-
+use Livewire\WithPagination;
 
 new class extends Component
 {
-    use Livewire\WithPagination;
+    use WithPagination;
 
     public string $search = '';
+
     public string $sortBy = 'id';
 
     public string $sortDirection = 'desc';
@@ -19,14 +19,13 @@ new class extends Component
     public function render()
     {
         return $this->view()
-            ->title('Delivery Manager | ' . __('pages_title.customer_index'));
+            ->title('Delivery Manager | '.__('pages_title.customer_index'));
     }
 
     public function updatedSearch($page): void
     {
         $this->resetPage();
     }
-
 
     public function sort($column): void
     {
@@ -53,10 +52,9 @@ new class extends Component
             ->paginate(10);
     }
 
-
     public function delete(Customer $customer): void
     {
-        if (!Auth::user()->isAdmin) {
+        if (! Auth::user()->isAdmin) {
             abort(403);
         }
 
@@ -97,7 +95,9 @@ new class extends Component
                             {{ $customer->id }}
                         </flux:table.cell>
                         <flux:table.cell>
-                            {{ Str::title($customer->name) }}
+                            <flux:link :href="route('customer.show', $customer)" wire:navigate>
+                                {{ Str::title($customer->name) }}
+                            </flux:link>
                         </flux:table.cell>
                         <flux:table.cell>
                             {{ $customer->address }}
@@ -118,6 +118,13 @@ new class extends Component
                                         inset="top bottom"
                                     />
                                     <flux:menu>
+                                        <flux:menu.item
+                                            icon="pencil-square"
+                                            :href="route('customer.show', $customer)"
+                                            wire:navigate
+                                        >
+                                            {{ __('customer.edit') }}
+                                        </flux:menu.item>
                                         <flux:menu.item icon="trash"
                                                         wire:click="delete({{ $customer->id }})"
                                                         wire:confirm="{{ __('customer.delete_confirm') }}{{ $customer->name }}">

@@ -5,6 +5,7 @@ namespace App\Livewire\Forms;
 use App\Models\Customer;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
+
 use function __;
 use function strtolower;
 
@@ -37,5 +38,18 @@ class CustomerForm extends Form
         $validated = $this->validate();
 
         Customer::create($validated);
+    }
+
+    public function setCustomer(Customer $customer): void
+    {
+        $this->name = $customer->name;
+        $this->email = $customer->email;
+        $this->address = $customer->address;
+        $this->phone = $customer->phone;
+    }
+
+    public function update(Customer $customer): void
+    {
+        $customer->update($this->validate());
     }
 }

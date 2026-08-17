@@ -6,6 +6,8 @@ return [
     'order_create_title' => 'Création d’une nouvelle commande',
     'customer_information' => 'Informations du client',
     'customer_information_description' => 'Renseignez les coordonnées du nouveau client.',
+    'customer_edit_title' => 'Client : :customer',
+    'customer_edit_description' => 'Consultez et modifiez les coordonnées du client.',
     'product_information' => 'Informations du produit',
     'product_information_description' => 'Renseignez les informations du nouveau produit.',
 
@@ -35,6 +37,7 @@ return [
     'abbr_required' => 'Requis',
 
     'submit_customer' => 'Enregistrer le nouveau client',
+    'update_customer' => 'Enregistrer les modifications',
     'submit_product' => 'Enregistrer le nouveau produit',
     'submit_order' => 'Enregistrer la commande',
 ];

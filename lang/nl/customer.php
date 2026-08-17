@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'edit' => 'Bewerken',
     'customer_list' => 'Klantenlijst',
     'search_placeholder' => 'Zoeken...',
     'add_customer' => 'Klant toevoegen',

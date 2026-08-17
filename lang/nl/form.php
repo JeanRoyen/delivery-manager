@@ -6,6 +6,8 @@ return [
     'order_create_title' => 'Nieuwe bestelling aanmaken',
     'customer_information' => 'Klantgegevens',
     'customer_information_description' => 'Vul de contactgegevens van de nieuwe klant in.',
+    'customer_edit_title' => 'Klant: :customer',
+    'customer_edit_description' => 'Bekijk en wijzig de contactgegevens van de klant.',
     'product_information' => 'Productgegevens',
     'product_information_description' => 'Vul de gegevens van het nieuwe product in.',
 
@@ -35,6 +37,7 @@ return [
     'abbr_required' => 'Vereist',
 
     'submit_customer' => 'Nieuwe klant opslaan',
+    'update_customer' => 'Wijzigingen opslaan',
     'submit_product' => 'Nieuw product opslaan',
     'submit_order' => 'Bestelling opslaan',
 ];

@@ -6,6 +6,8 @@ return [
     'order_create_title' => 'Create a new order',
     'customer_information' => 'Customer information',
     'customer_information_description' => 'Enter the new customer’s contact details.',
+    'customer_edit_title' => 'Customer: :customer',
+    'customer_edit_description' => 'View and edit the customer’s contact details.',
     'product_information' => 'Product information',
     'product_information_description' => 'Enter the new product information.',
 
@@ -35,6 +37,7 @@ return [
     'abbr_required' => 'Required',
 
     'submit_customer' => 'Save new customer',
+    'update_customer' => 'Save changes',
     'submit_product' => 'Save new product',
     'submit_order' => 'Save order',
 ];

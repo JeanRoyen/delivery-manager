@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'edit' => 'Edit',
     'customer_list' => 'Customer list',
     'search_placeholder' => 'Search...',
     'add_customer' => 'Add customer',
