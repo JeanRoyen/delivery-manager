@@ -15,5 +15,6 @@ return [
 
     'previous' => '&laquo; Vorige',
     'next' => 'Volgende &raquo;',
+    'showing' => 'Weergave van :first tot :last van :total resultaten',
 
 ];
