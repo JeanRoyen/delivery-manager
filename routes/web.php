@@ -9,6 +9,7 @@ Route::middleware(['auth', 'language'])->group(function () {
     Route::livewire('/customer/{customer}', 'pages::customer.show')->name('customer.show');
     Route::livewire('/product', 'pages::product.index')->name('product.index');
     Route::livewire('/product/create', 'pages::product.create')->name('product.create');
+    Route::livewire('/product/{product}', 'pages::product.show')->name('product.show');
 
     Route::prefix('orders')->group(function () {
         Route::livewire('/create', 'pages::orders.create')->name('orders.create');

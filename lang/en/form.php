@@ -10,6 +10,8 @@ return [
     'customer_edit_description' => 'View and edit the customer’s contact details.',
     'product_information' => 'Product information',
     'product_information_description' => 'Enter the new product information.',
+    'product_edit_title' => 'Product: :product',
+    'product_edit_description' => 'View and edit the product information.',
 
     'name' => 'Name',
     'description' => 'Description',
@@ -39,5 +41,6 @@ return [
     'submit_customer' => 'Save new customer',
     'update_customer' => 'Save changes',
     'submit_product' => 'Save new product',
+    'update_product' => 'Save changes',
     'submit_order' => 'Save order',
 ];

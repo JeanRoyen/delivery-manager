@@ -10,6 +10,8 @@ return [
     'customer_edit_description' => 'Consultez et modifiez les coordonnées du client.',
     'product_information' => 'Informations du produit',
     'product_information_description' => 'Renseignez les informations du nouveau produit.',
+    'product_edit_title' => 'Produit : :product',
+    'product_edit_description' => 'Consultez et modifiez les informations du produit.',
 
     'name' => 'Nom',
     'description' => 'Description',
@@ -39,5 +41,6 @@ return [
     'submit_customer' => 'Enregistrer le nouveau client',
     'update_customer' => 'Enregistrer les modifications',
     'submit_product' => 'Enregistrer le nouveau produit',
+    'update_product' => 'Enregistrer les modifications',
     'submit_order' => 'Enregistrer la commande',
 ];

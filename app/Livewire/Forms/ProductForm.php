@@ -5,6 +5,7 @@ namespace App\Livewire\Forms;
 use App\Models\Product;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
+
 use function __;
 use function strtolower;
 
@@ -28,7 +29,6 @@ class ProductForm extends Form
         ];
     }
 
-
     public function store(): void
     {
         $validated = $this->validate();
@@ -38,6 +38,21 @@ class ProductForm extends Form
         Product::create($validated);
     }
 
+    public function setProduct(Product $product): void
+    {
+        $this->name = $product->name;
+        $this->description = $product->description;
+        $this->price = number_format($product->price / 100, 2, '.', '');
+    }
+
+    public function update(Product $product): void
+    {
+        $validated = $this->validate();
+        $validated['price'] = $this->normalizePrice($this->price);
+
+        $product->update($validated);
+    }
+
     /* Permet de récuperer le prix du formulaire avec virgule, point et vide en entrant le prix en centimes dans la base de données. */
     private function normalizePrice(string $price): int
     {
@@ -45,7 +60,6 @@ class ProductForm extends Form
 
         $price = str_replace(',', '.', $price);
 
-        return (int)round(((float)$price) * 100);
+        return (int) round(((float) $price) * 100);
     }
-
 }

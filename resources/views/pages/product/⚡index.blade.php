@@ -4,11 +4,14 @@ use App\Models\Product;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Livewire\WithPagination;
 
-new class extends Component {
-    use Livewire\WithPagination;
+new class extends Component
+{
+    use WithPagination;
 
     public string $search = '';
+
     public string $sortBy = 'id';
 
     public string $sortDirection = 'desc';
@@ -16,7 +19,7 @@ new class extends Component {
     public function render()
     {
         return $this->view()
-            ->title('Delivery Manager | ' . __('pages_title.product_index'));
+            ->title('Delivery Manager | '.__('pages_title.product_index'));
     }
 
     public function updatedSearch($page): void
@@ -49,7 +52,7 @@ new class extends Component {
 
     public function delete(Product $product): void
     {
-        if (!Auth::user()->isAdmin) {
+        if (! Auth::user()->isAdmin) {
             abort(403);
         }
 
@@ -91,7 +94,9 @@ new class extends Component {
                             {{ $product->id }}
                         </flux:table.cell>
                         <flux:table.cell>
-                            {{ Str::title($product->name) }}
+                            <flux:link :href="route('product.show', $product)" wire:navigate>
+                                {{ Str::title($product->name) }}
+                            </flux:link>
                         </flux:table.cell>
                         <flux:table.cell class="whitespace-normal wrap-break-word max-w-xs">
                             {{ $product->description }}
@@ -109,6 +114,14 @@ new class extends Component {
                                         inset="top bottom"
                                     />
                                     <flux:menu>
+
+                                        <flux:menu.item
+                                            icon="pencil-square"
+                                            :href="route('product.show', $product)"
+                                            wire:navigate
+                                        >
+                                            {{ __('product.edit') }}
+                                        </flux:menu.item>
 
                                         <flux:menu.item icon="trash"
                                                         wire:click="delete({{ $product->id }})"

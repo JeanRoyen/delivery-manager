@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'edit' => 'Bewerken',
     'product_list' => 'Productlijst',
     'search_placeholder' => 'Zoeken...',
 

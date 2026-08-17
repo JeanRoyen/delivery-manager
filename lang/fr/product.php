@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'edit' => 'Modifier',
     'product_list' => 'Liste des produits',
     'search_placeholder' => 'Rechercher...',
 
@@ -15,4 +16,3 @@ return [
     'add_product' => 'Ajouter un produit',
     'delete_confirm' => 'Êtes-vous sûr de vouloir supprimer : ',
 ];
-

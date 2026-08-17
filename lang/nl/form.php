@@ -10,6 +10,8 @@ return [
     'customer_edit_description' => 'Bekijk en wijzig de contactgegevens van de klant.',
     'product_information' => 'Productgegevens',
     'product_information_description' => 'Vul de gegevens van het nieuwe product in.',
+    'product_edit_title' => 'Product: :product',
+    'product_edit_description' => 'Bekijk en wijzig de productgegevens.',
 
     'name' => 'Naam',
     'description' => 'Beschrijving',
@@ -39,5 +41,6 @@ return [
     'submit_customer' => 'Nieuwe klant opslaan',
     'update_customer' => 'Wijzigingen opslaan',
     'submit_product' => 'Nieuw product opslaan',
+    'update_product' => 'Wijzigingen opslaan',
     'submit_order' => 'Bestelling opslaan',
 ];
