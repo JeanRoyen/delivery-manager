@@ -9,6 +9,10 @@ new class extends Component
 {
     public Order $order;
 
+    public bool $showIncidentModal = false;
+
+    public string $incidentMessage = '';
+
     public function render(): View
     {
         return $this->view()->title('Delivery Manager | '.$this->order->code);
@@ -43,6 +47,30 @@ new class extends Component
         $this->redirect(route($redirect));
 
     }
+
+    public function openIncidentModal(): void
+    {
+        $this->resetValidation('incidentMessage');
+        $this->incidentMessage = '';
+        $this->showIncidentModal = true;
+    }
+
+    public function reportIncident(): void
+    {
+        $this->validate(
+            ['incidentMessage' => ['required', 'string', 'max:1000']],
+            [],
+            ['incidentMessage' => strtolower(__('order_show.incident.message'))]
+        );
+
+        $this->order->update([
+            'incident_message' => $this->incidentMessage,
+        ]);
+
+        $this->order->state->transitionTo('failed');
+        $this->order->refresh();
+        $this->showIncidentModal = false;
+    }
 };
 ?>
 
@@ -73,6 +101,24 @@ new class extends Component
                 </div>
 
             </div>
+
+            @if($order->incident_message)
+                <div class="rounded-xl border border-red-200 bg-red-50 p-4 dark:border-red-900/60 dark:bg-red-950/30">
+                    <div class="flex gap-3">
+                        <flux:icon.exclamation-triangle class="mt-0.5 size-5 shrink-0 text-red-600 dark:text-red-400" />
+
+                        <div class="space-y-1">
+                            <flux:heading size="sm" class="text-red-800 dark:text-red-300">
+                                {{ __('order_show.incident.title') }}
+                            </flux:heading>
+                            <flux:text class="whitespace-pre-line text-red-700 dark:text-red-300">
+                                {{ $order->incident_message }}
+                            </flux:text>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             <flux:heading size="lg">
                 {{ __('order_show.customer.informations') }}
             </flux:heading>
@@ -254,5 +300,33 @@ new class extends Component
             </div>
         </div>
     </flux:card>
+
+    <flux:modal wire:model="showIncidentModal" class="space-y-6">
+        <form wire:submit="reportIncident" class="space-y-6">
+            <div class="space-y-2">
+                <flux:heading size="lg">{{ __('order_show.incident.modal_title') }}</flux:heading>
+                <flux:text>{{ __('order_show.incident.description') }}</flux:text>
+            </div>
+
+            <flux:textarea
+                wire:model="incidentMessage"
+                :label="__('order_show.incident.message')"
+                rows="5"
+                required
+            />
+
+            <div class="flex justify-end gap-3">
+                <flux:modal.close>
+                    <flux:button type="button" variant="ghost">
+                        {{ __('order_show.incident.cancel') }}
+                    </flux:button>
+                </flux:modal.close>
+
+                <flux:button type="submit" variant="primary" color="red" icon="exclamation-triangle">
+                    {{ __('order_show.incident.confirm') }}
+                </flux:button>
+            </div>
+        </form>
+    </flux:modal>
 
 </x-general.section_with_title>

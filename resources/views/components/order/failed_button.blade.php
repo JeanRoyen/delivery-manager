@@ -9,8 +9,7 @@
         variant="primary"
         color="red"
         icon="x-mark"
-        wire:navigate
-        wire:click="updateState('failed', 'failed.index')"
+        wire:click="openIncidentModal"
     >
         {{ __('order_show.order.failed_status') }}
     </flux:button>

@@ -45,4 +45,13 @@ return [
         'empty' => 'Er is nog geen statuswijziging geregistreerd.',
     ],
 
+    'incident' => [
+        'title' => 'Gemeld incident',
+        'modal_title' => 'Een incident melden',
+        'description' => 'Beschrijf het probleem met deze bestelling.',
+        'message' => 'Incidentbericht',
+        'cancel' => 'Annuleren',
+        'confirm' => 'Incident melden',
+    ],
+
 ];

@@ -45,4 +45,13 @@ return [
         'empty' => 'Aucun changement d’état enregistré.',
     ],
 
+    'incident' => [
+        'title' => 'Incident signalé',
+        'modal_title' => 'Signaler un incident',
+        'description' => 'Décrivez le problème rencontré avec cette commande.',
+        'message' => 'Message de l’incident',
+        'cancel' => 'Annuler',
+        'confirm' => 'Signaler l’incident',
+    ],
+
 ];

@@ -45,4 +45,13 @@ return [
         'empty' => 'No state change has been recorded.',
     ],
 
+    'incident' => [
+        'title' => 'Reported incident',
+        'modal_title' => 'Report an incident',
+        'description' => 'Describe the problem encountered with this order.',
+        'message' => 'Incident message',
+        'cancel' => 'Cancel',
+        'confirm' => 'Report incident',
+    ],
+
 ];

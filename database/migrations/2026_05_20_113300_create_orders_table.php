@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
@@ -13,7 +14,7 @@ return new class extends Migration {
             $table->foreignId('customer_id')->constrained('customers');
             $table->unsignedInteger('total_amount');
             $table->string('state');
-
+            $table->text('incident_message')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
