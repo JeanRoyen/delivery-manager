@@ -1,16 +1,18 @@
 <?php
 
 use App\Models\Order;
-use App\States\Order\Delivered;
+use App\Models\OrderHistory;
+use App\States\Order\Delivering;
+use App\States\Order\Pending;
+use App\States\Order\Preparing;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
-use App\Models\Status;
 use Livewire\WithPagination;
 
-new class extends Component {
+new class extends Component
+{
     use WithPagination;
-
 
     public string $sortBy = 'updated_at';
 
@@ -21,7 +23,7 @@ new class extends Component {
     public function render()
     {
         return $this->view()
-            ->title('Delivery Manager | ' . __('pages_title.dashboard'));
+            ->title('Delivery Manager | '.__('pages_title.dashboard'));
     }
 
     public function updatedSearch($page): void
@@ -38,6 +40,33 @@ new class extends Component {
             $this->sortDirection = 'asc';
         }
         $this->resetPage();
+    }
+
+    #[Computed]
+    public function pendingOrders(): int
+    {
+        return Order::whereState('state', Pending::class)->count();
+    }
+
+    #[Computed]
+    public function preparingOrders(): int
+    {
+        return Order::whereState('state', Preparing::class)->count();
+    }
+
+    #[Computed]
+    public function deliveringOrders(): int
+    {
+        return Order::whereState('state', Delivering::class)->count();
+    }
+
+    #[Computed]
+    public function deliveredToday(): int
+    {
+        return OrderHistory::query()
+            ->where('to_state', 'delivered')
+            ->whereDate('created_at', today())
+            ->count();
     }
 
     #[Computed]
@@ -65,6 +94,57 @@ new class extends Component {
         <section>
             <h3 class="text-3xl font-bold">{{ __('dashboard.welcome', ['name' => ucfirst(Auth::user()->first_name)]) }}</h3>
         </section>
+
+        <section class="space-y-4">
+            <h3 class="text-2xl">{{ __('dashboard.overview') }}</h3>
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                <x-dashboard.indicator_card
+                    :title="__('dashboard.pending_orders')"
+                    :value="$this->pendingOrders"
+                    :href="route('pending.index')"
+                    icon-class="bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300"
+                >
+                    <x-slot:icon>
+                        <flux:icon.clock class="size-6" />
+                    </x-slot:icon>
+                </x-dashboard.indicator_card>
+
+                <x-dashboard.indicator_card
+                    :title="__('dashboard.preparing_orders')"
+                    :value="$this->preparingOrders"
+                    :href="route('preparing.index')"
+                    icon-class="bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-300"
+                >
+                    <x-slot:icon>
+                        <flux:icon.cube class="size-6" />
+                    </x-slot:icon>
+                </x-dashboard.indicator_card>
+
+                <x-dashboard.indicator_card
+                    :title="__('dashboard.delivering_orders')"
+                    :value="$this->deliveringOrders"
+                    :href="route('delivering.index')"
+                    icon-class="bg-lime-100 text-lime-700 dark:bg-lime-900/40 dark:text-lime-300"
+                >
+                    <x-slot:icon>
+                        <flux:icon.truck class="size-6" />
+                    </x-slot:icon>
+                </x-dashboard.indicator_card>
+
+                <x-dashboard.indicator_card
+                    :title="__('dashboard.delivered_today')"
+                    :value="$this->deliveredToday"
+                    :href="route('delivered.index')"
+                    icon-class="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300"
+                >
+                    <x-slot:icon>
+                        <flux:icon.check class="size-6" />
+                    </x-slot:icon>
+                </x-dashboard.indicator_card>
+            </div>
+        </section>
+
         <section class="space-y-4">
             <h3 class="text-2xl">{{ __('dashboard.fast_actions') }}</h3>
             <x-dashboard.fast-action_card-list />
