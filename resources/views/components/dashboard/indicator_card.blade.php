@@ -10,7 +10,7 @@
     wire:navigate
     class="group block rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
 >
-    <flux:card class="flex items-center justify-between gap-4 transition group-hover:-translate-y-0.5 group-hover:border-zinc-300 group-hover:shadow-md dark:group-hover:border-zinc-600">
+    <flux:card class="flex h-32 items-center justify-between gap-4 transition group-hover:-translate-y-0.5 group-hover:border-zinc-300 group-hover:shadow-md dark:group-hover:border-zinc-600">
         <div class="space-y-1">
             <flux:text>{{ $title }}</flux:text>
             <div class="text-3xl font-bold">{{ $value }}</div>

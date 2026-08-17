@@ -6,7 +6,7 @@
     'buttonColor' => 'green',
 ])
 
-<flux:card class="group flex h-full flex-col p-6 transition duration-200 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-lg dark:hover:border-zinc-600">
+<flux:card class="group flex h-64 flex-col p-6 transition duration-200 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-lg dark:hover:border-zinc-600">
     <div class="mb-6">
         <div class="inline-flex rounded-2xl p-3 transition duration-200 group-hover:scale-105 {{ $iconClass }}">
             {{ $icon }}
@@ -14,7 +14,7 @@
     </div>
 
     <div class="flex flex-1 flex-col items-start gap-5">
-        <flux:heading size="lg" class="text-balance">
+        <flux:heading size="lg" class="min-h-14 text-balance">
             {{ $title }}
         </flux:heading>
 
