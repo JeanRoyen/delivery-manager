@@ -14,7 +14,7 @@ return [
         'mark_delivered' => 'Mark as delivered',
         'delivery_status' => 'Delivery status',
         'failed_status' => 'Report an incident',
-        ],
+    ],
 
     'customer' => [
         'informations' => 'Customer information',
@@ -22,6 +22,9 @@ return [
         'email' => 'Email',
         'phone' => 'Phone',
         'address' => 'Address',
+        'send_email' => 'Send an email',
+        'call' => 'Call',
+        'open_maps' => 'Open in Maps',
     ],
 
     'product' => [

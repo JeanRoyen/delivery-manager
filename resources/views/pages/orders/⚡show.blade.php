@@ -113,6 +113,39 @@ new class extends Component
 
             </div>
 
+            <div class="flex flex-wrap gap-3">
+                <flux:button
+                    href="mailto:{{ $order->customer->email }}"
+                    icon="envelope"
+                    variant="primary"
+                    color="sky"
+                >
+                    {{ __('order_show.customer.send_email') }}
+                </flux:button>
+
+                @if($order->customer->phone)
+                    <flux:button
+                        href="tel:{{ $order->customer->phone }}"
+                        icon="phone"
+                        variant="primary"
+                        color="emerald"
+                    >
+                        {{ __('order_show.customer.call') }}
+                    </flux:button>
+                @endif
+
+                <flux:button
+                    href="https://www.google.com/maps/search/?api=1&query={{ urlencode($order->customer->address) }}"
+                    icon="map-pin"
+                    variant="primary"
+                    color="violet"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {{ __('order_show.customer.open_maps') }}
+                </flux:button>
+            </div>
+
             <flux:separator />
 
             <div class="flex items-center justify-between">

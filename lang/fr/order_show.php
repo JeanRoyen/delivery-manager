@@ -22,6 +22,9 @@ return [
         'email' => 'Email',
         'phone' => 'Téléphone',
         'address' => 'Adresse',
+        'send_email' => 'Envoyer un email',
+        'call' => 'Téléphoner',
+        'open_maps' => 'Ouvrir dans Maps',
     ],
 
     'product' => [
