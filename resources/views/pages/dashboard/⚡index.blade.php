@@ -177,7 +177,9 @@ new class extends Component
                                 <flux:link :href="route('orders.show', $order)">{{ $order->code }} </flux:link>
                             </flux:table.cell>
                             <flux:table.cell>
-                                <flux:link :href="route('orders.show', $order)">{{ $order->customer->name }} </flux:link>
+                                <flux:link :href="route('customer.show', $order->customer)" wire:navigate>
+                                    {{ $order->customer->name }}
+                                </flux:link>
                             </flux:table.cell>
 
                             <flux:table.cell>

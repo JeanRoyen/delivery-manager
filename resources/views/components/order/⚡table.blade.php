@@ -1,14 +1,13 @@
 <?php
 
 use App\Models\Order;
-use App\States\Order\Pending;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-new class extends Component {
+new class extends Component
+{
     use WithPagination;
 
     public ?string $state;
@@ -82,7 +81,9 @@ new class extends Component {
                         <flux:link :href="route('orders.show', $order)">{{ $order->code }} </flux:link>
                     </flux:table.cell>
                     <flux:table.cell>
-                        <flux:link :href="route('orders.show', $order)">{{ $order->customer->name }}</flux:link>
+                        <flux:link :href="route('customer.show', $order->customer)" wire:navigate>
+                            {{ $order->customer->name }}
+                        </flux:link>
                     </flux:table.cell>
 
                     <flux:table.cell>
@@ -114,4 +115,3 @@ new class extends Component {
     </flux:table>
     <flux:pagination :paginator="$this->orders" />
 </div>
-
