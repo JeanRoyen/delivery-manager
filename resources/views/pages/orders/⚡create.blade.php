@@ -145,7 +145,7 @@ new class extends Component
                                     >
                                         @foreach($this->products as $product)
                                             <flux:select.option value="{{ $product->id }}">
-                                                {{ $product->name }} — {{ money($product->price, 'EUR') }}
+                                                #{{ $product->id }} — {{ $product->name }} — {{ money($product->price, 'EUR') }}
                                             </flux:select.option>
                                         @endforeach
                                     </flux:select>
