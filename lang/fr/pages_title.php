@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'login' => 'Connexion',
     'dashboard' => 'Tableau de bord',
 
     'customer_index' => 'Clients',

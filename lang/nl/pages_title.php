@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'login' => 'Aanmelden',
     'dashboard' => 'Dashboard',
 
     'customer_index' => 'Klanten',

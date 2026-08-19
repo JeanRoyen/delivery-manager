@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'login' => 'Login',
     'dashboard' => 'Dashboard',
 
     'customer_index' => 'Customers',
