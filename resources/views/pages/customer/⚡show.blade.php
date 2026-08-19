@@ -35,7 +35,20 @@ new class extends Component
     :title="__('form.customer_edit_title', ['customer' => $customer->name])"
 >
     <form wire:submit="save">
-        <flux:card class="overflow-hidden p-0">
+        <flux:card
+            class="overflow-hidden p-0"
+            itemscope
+            itemtype="https://schema.org/Person"
+        >
+            <meta itemprop="identifier" content="{{ $customer->id }}">
+            <meta itemprop="name" content="{{ $customer->name }}">
+            <meta itemprop="email" content="{{ $customer->email }}">
+            <meta itemprop="address" content="{{ $customer->address }}">
+
+            @if($customer->phone)
+                <meta itemprop="telephone" content="{{ $customer->phone }}">
+            @endif
+
             <div class="space-y-6 p-6 md:p-8">
                 <div class="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
                     <div class="space-y-1">

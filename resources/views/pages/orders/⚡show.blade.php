@@ -80,7 +80,15 @@ new class extends Component
         'customer' => $order->customer->name,
     ])"
 >
-    <flux:card class="space-y-6">
+    <flux:card
+        class="space-y-6"
+        itemscope
+        itemtype="https://schema.org/Order"
+    >
+        <meta itemprop="orderNumber" content="{{ $order->code }}">
+        <meta itemprop="orderDate" content="{{ $order->created_at->toIso8601String() }}">
+        <meta itemprop="orderStatus" content="{{ $order->state->label() }}">
+
         <div class="max-w-7xl mx-auto space-y-8">
 
             <div class="flex items-center justify-between">
@@ -123,12 +131,17 @@ new class extends Component
                 {{ __('order_show.customer.informations') }}
             </flux:heading>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4"
+                itemprop="customer"
+                itemscope
+                itemtype="https://schema.org/Person"
+            >
 
                 <flux:card size="sm">
                     <flux:text>{{ __('order_show.customer.name') }}</flux:text>
 
-                    <div class="font-semibold">
+                    <div class="font-semibold" itemprop="name">
                         {{ $order->customer->name }}
                     </div>
                 </flux:card>
@@ -136,7 +149,7 @@ new class extends Component
                 <flux:card size="sm">
                     <flux:text>{{ __('order_show.customer.email') }}</flux:text>
 
-                    <div class="font-semibold">
+                    <div class="font-semibold" itemprop="email">
                         {{ $order->customer->email }}
                     </div>
                 </flux:card>
@@ -144,7 +157,7 @@ new class extends Component
                 <flux:card size="sm">
                     <flux:text>{{ __('order_show.customer.phone') }}</flux:text>
 
-                    <div class="font-semibold">
+                    <div class="font-semibold" itemprop="telephone">
                         {{ $order->customer->phone }}
                     </div>
                 </flux:card>
@@ -152,7 +165,7 @@ new class extends Component
                 <flux:card size="sm">
                     <flux:text>{{ __('order_show.customer.address') }}</flux:text>
 
-                    <div class="font-semibold">
+                    <div class="font-semibold" itemprop="address">
                         {{ $order->customer->address }}
                     </div>
                 </flux:card>
@@ -215,10 +228,24 @@ new class extends Component
                 <flux:table.rows>
 
                     @foreach($this->items as $item)
-                        <flux:table.row>
+                        <flux:table.row
+                            itemprop="orderedItem"
+                            itemscope
+                            itemtype="https://schema.org/OrderItem"
+                        >
+
+                            <meta itemprop="orderQuantity" content="{{ $item->quantity }}">
+                            <meta itemprop="orderItemNumber" content="{{ $item->id }}">
 
                             <flux:table.cell>
-                                {{ $item->product->id }}
+                                <span
+                                    itemprop="orderedItem"
+                                    itemscope
+                                    itemtype="https://schema.org/Product"
+                                >
+                                    <span itemprop="sku">{{ $item->product->id }}</span>
+                                    <meta itemprop="name" content="{{ $item->product->name }}">
+                                </span>
                             </flux:table.cell>
 
                             <flux:table.cell>
@@ -289,7 +316,14 @@ new class extends Component
                         {{ __('order_show.order.total_amount') }}
                     </flux:text>
 
-                    <div class="text-xl font-bold">
+                    <div
+                        class="text-xl font-bold"
+                        itemprop="priceSpecification"
+                        itemscope
+                        itemtype="https://schema.org/PriceSpecification"
+                    >
+                        <meta itemprop="price" content="{{ number_format($order->total_amount / 100, 2, '.', '') }}">
+                        <meta itemprop="priceCurrency" content="EUR">
                         {{ Number::currency($order->total_amount, 'EUR') }}
                     </div>
                 </div>

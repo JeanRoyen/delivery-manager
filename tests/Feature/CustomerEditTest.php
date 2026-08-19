@@ -15,7 +15,10 @@ test('an authenticated user can see a customer page', function () {
     $this->get(route('customer.show', $customer))
         ->assertOk()
         ->assertSee($customer->name)
-        ->assertSee($customer->email);
+        ->assertSee($customer->email)
+        ->assertSee('itemtype="https://schema.org/Person"', false)
+        ->assertSee('itemprop="email"', false)
+        ->assertSee('itemprop="address"', false);
 });
 
 test('a customer can be updated', function () {

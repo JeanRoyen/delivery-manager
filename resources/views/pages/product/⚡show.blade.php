@@ -35,7 +35,23 @@ new class extends Component
     :title="__('form.product_edit_title', ['product' => $product->name])"
 >
     <form wire:submit="save">
-        <flux:card class="overflow-hidden p-0">
+        <flux:card
+            class="overflow-hidden p-0"
+            itemscope
+            itemtype="https://schema.org/Product"
+        >
+            <meta itemprop="sku" content="{{ $product->id }}">
+            <meta itemprop="name" content="{{ $product->name }}">
+
+            @if($product->description)
+                <meta itemprop="description" content="{{ $product->description }}">
+            @endif
+
+            <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                <meta itemprop="price" content="{{ number_format($product->price / 100, 2, '.', '') }}">
+                <meta itemprop="priceCurrency" content="EUR">
+            </span>
+
             <div class="space-y-6 p-6 md:p-8">
                 <div class="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
                     <div class="space-y-1">

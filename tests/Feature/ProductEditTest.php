@@ -15,7 +15,11 @@ test('an authenticated user can see a product page', function () {
     $this->get(route('product.show', $product))
         ->assertOk()
         ->assertSee($product->name)
-        ->assertSee('12.99');
+        ->assertSee('12.99')
+        ->assertSee('itemtype="https://schema.org/Product"', false)
+        ->assertSee('itemtype="https://schema.org/Offer"', false)
+        ->assertSee('itemprop="price" content="12.99"', false)
+        ->assertSee('itemprop="priceCurrency" content="EUR"', false);
 });
 
 test('a product can be updated', function () {
