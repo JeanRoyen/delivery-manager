@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'main_content' => 'Hoofdinhoud',
+    'main_navigation' => 'Hoofdnavigatie',
+    'language_navigation' => 'Taalkeuze',
+    'user_navigation' => 'Gebruikersmenu',
     'dashboard' => 'Dashboard',
     'customers' => 'Klanten',
     'products' => 'Producten',

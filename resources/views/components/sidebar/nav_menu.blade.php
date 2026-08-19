@@ -7,7 +7,12 @@
     <flux:sidebar.collapse class="lg:hidden" />
 </flux:sidebar.header>
 
-<flux:sidebar.nav>
+<flux:sidebar.nav
+    aria-label="{{ __('sidebar.main_navigation') }}"
+    title="{{ __('sidebar.main_navigation') }}"
+>
+    <h2 class="sr-only">{{ __('sidebar.main_navigation') }}</h2>
+
     <flux:sidebar.item icon="squares-2x2" href="{{ route('dashboard.index') }}">
         {{ __('sidebar.dashboard') }}
     </flux:sidebar.item>

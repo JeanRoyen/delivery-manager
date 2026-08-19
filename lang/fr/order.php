@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'status_navigation' => 'Navigation par statut des commandes',
     'pending_title' => 'Commandes à traiter',
     'preparing_title' => 'Commandes en préparation',
     'delivering_title' => 'Commandes en livraison',
@@ -17,4 +18,4 @@ return [
 
     'details_title' => 'Détails de la commande de :customer',
     'see_order' => 'Voir la commande',
-    ];
+];

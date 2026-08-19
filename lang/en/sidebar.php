@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'main_content' => 'Main content',
+    'main_navigation' => 'Main navigation',
+    'language_navigation' => 'Language selection',
+    'user_navigation' => 'User menu',
     'dashboard' => 'Dashboard',
     'customers' => 'Customers',
     'products' => 'Products',

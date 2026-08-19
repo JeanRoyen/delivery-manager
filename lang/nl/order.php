@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'status_navigation' => 'Navigatie op bestelstatus',
     'pending_title' => 'Te behandelen bestellingen',
     'preparing_title' => 'Bestellingen in voorbereiding',
     'delivering_title' => 'Bestellingen in levering',

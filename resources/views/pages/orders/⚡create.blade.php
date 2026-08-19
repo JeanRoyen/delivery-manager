@@ -11,6 +11,12 @@ new class extends Component
 {
     public OrderForm $form;
 
+    public function render()
+    {
+        return $this->view()
+            ->title('Delivery Manager | '.__('pages_title.orders_create'));
+    }
+
     #[Computed]
     public function products(): Collection
     {

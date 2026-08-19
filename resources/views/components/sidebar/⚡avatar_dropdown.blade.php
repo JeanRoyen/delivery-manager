@@ -20,7 +20,12 @@ new class extends Component
 
     <flux:profile :name="Str::title(auth()->user()->first_name . ' ' . auth()->user()->last_name)" />
 
-        <flux:navmenu>
+        <flux:navmenu
+            aria-label="{{ __('sidebar.user_navigation') }}"
+            title="{{ __('sidebar.user_navigation') }}"
+        >
+            <h2 class="sr-only">{{ __('sidebar.user_navigation') }}</h2>
+
             <flux:navmenu.item
                 icon="arrow-right-start-on-rectangle"
                 wire:click="logout"

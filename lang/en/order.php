@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'status_navigation' => 'Order status navigation',
     'pending_title' => 'Pending orders',
     'preparing_title' => 'Preparing orders',
     'delivering_title' => 'Delivering orders',
@@ -17,4 +18,4 @@ return [
 
     'details_title' => 'Order details for :customer',
     'see_order' => 'View order',
-    ];
+];

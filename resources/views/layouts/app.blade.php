@@ -12,10 +12,14 @@
 
 </head>
 <body class="min-h-screen bg-white dark:bg-zinc-800">
+<h1 class="sr-only">{{ $title ?? config('app.name') }}</h1>
 
 <x-sidebar.sidebar/>
 
-<flux:main>
+<flux:main
+    aria-label="{{ __('sidebar.main_content') }}"
+    title="{{ __('sidebar.main_content') }}"
+>
     @persist('toast')
     <flux:toast position="top end" />
     @endpersist

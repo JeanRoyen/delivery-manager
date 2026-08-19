@@ -40,7 +40,12 @@ new class extends Component {
 };
 ?>
 
-<flux:navbar>
+<flux:navbar
+    aria-label="{{ __('order.status_navigation') }}"
+    title="{{ __('order.status_navigation') }}"
+>
+    <h2 class="sr-only">{{ __('order.status_navigation') }}</h2>
+
     @foreach($this->statuses as $status)
         <x-order.navbar_item
             :status="$status->key"
