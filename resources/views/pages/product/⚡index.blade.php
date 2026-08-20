@@ -71,7 +71,7 @@ new class extends Component
                 {{ __('product.add_product') }}
             </x-general.button_new>
         </div>
-        <flux:table :paginate="$this->products">
+        <flux:table :paginate="$this->products" class="max-md:min-w-3xl">
             <flux:table.columns>
                 <flux:table.column class="lg:max-w-30" sortable :sorted="$sortBy === 'id'" :direction="$sortDirection"
                                    wire:click="sort('id')">
