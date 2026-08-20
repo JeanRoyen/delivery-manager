@@ -55,7 +55,7 @@ new class extends Component
 }
 ?>
 <div class="space-y-4">
-    <div class="flex gap-10 items-center">
+    <div class="flex flex-col items-stretch gap-4 md:flex-row md:items-center md:gap-10">
         <x-general.searchbar />
         <livewire:order.navbar />
     </div>

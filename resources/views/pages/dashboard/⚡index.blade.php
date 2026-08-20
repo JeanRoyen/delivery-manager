@@ -153,7 +153,7 @@ new class extends Component
         <section class="space-y-4">
             <h3 class="text-2xl">{{ __('dashboard.latest_modifications') }}</h3>
             <flux:table>
-                <div class="flex gap-10 items-center">
+                <div class="flex flex-col items-stretch gap-4 md:flex-row md:items-center md:gap-10">
                     <x-general.searchbar />
                     <livewire:order.navbar />
                 </div>
