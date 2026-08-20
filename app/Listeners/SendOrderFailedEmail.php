@@ -19,8 +19,9 @@ class SendOrderFailedEmail
             return;
         }
 
+        $locale = auth()->user()?->locale ?? app()->getLocale();
+
         Mail::to($event->model->customer->email)
-            ->locale(app()->getLocale())
-            ->queue(new OrderFailed($event->model));
+            ->queue((new OrderFailed($event->model))->locale($locale));
     }
 }

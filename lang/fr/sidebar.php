@@ -5,6 +5,7 @@ return [
     'main_navigation' => 'Navigation principale',
     'language_navigation' => 'Choix de la langue',
     'user_navigation' => 'Menu utilisateur',
+    'open_navigation' => 'Ouvrir la navigation',
     'dashboard' => 'Tableau de bord',
     'customers' => 'Clients',
     'products' => 'Produits',

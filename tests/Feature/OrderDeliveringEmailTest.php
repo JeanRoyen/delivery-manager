@@ -3,6 +3,7 @@
 use App\Mail\OrderDelivering;
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\User;
 use App\States\Order\Delivering;
 use App\States\Order\Preparing;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -12,6 +13,8 @@ uses(RefreshDatabase::class);
 
 test('an email is queued for the customer when an order starts delivering', function () {
     Mail::fake();
+
+    $this->actingAs(User::factory()->create(['locale' => 'nl']));
 
     $customer = Customer::factory()->create(['email' => 'client@example.test']);
     $order = Order::factory()->for($customer)->create();
@@ -23,8 +26,24 @@ test('an email is queued for the customer when an order starts delivering', func
     $order->state->transitionTo(Delivering::class);
 
     Mail::assertQueued(OrderDelivering::class, function (OrderDelivering $mail) use ($order): bool {
-        return $mail->hasTo('client@example.test') && $mail->order->is($order);
+        return $mail->hasTo('client@example.test')
+            && $mail->order->is($order)
+            && $mail->locale === 'nl';
     });
+});
+
+test('the delivery email is translated into dutch', function () {
+    $customer = Customer::factory()->create([
+        'name' => 'Klant Test',
+        'address' => 'Leveringsstraat 10',
+    ]);
+    $order = Order::factory()->for($customer)->create(['code' => '12345678']);
+
+    (new OrderDelivering($order))
+        ->locale('nl')
+        ->assertSeeInHtml('Uw bestelling is onderweg')
+        ->assertSeeInHtml('Leveringsadres')
+        ->assertSeeInHtml('Bedankt voor uw vertrouwen.');
 });
 
 test('the delivery email contains the order information', function () {
