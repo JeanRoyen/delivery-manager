@@ -34,6 +34,8 @@ it('names the application landmarks', function () {
         ->assertSee('title="Choix de la langue"', false)
         ->assertSee('title="Menu utilisateur"', false)
         ->assertSee('title="Navigation par statut des commandes"', false)
+        ->assertSee('data-flux-sidebar-toggle', false)
+        ->assertSee('title="Ouvrir la navigation"', false)
         ->assertSee('<h1 class="sr-only">Delivery Manager | Tableau de bord</h1>', false)
         ->assertSee('<h2 class="sr-only">Navigation principale</h2>', false)
         ->assertSee('<h2 class="sr-only">Choix de la langue</h2>', false)
