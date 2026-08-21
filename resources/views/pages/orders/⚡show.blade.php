@@ -257,11 +257,11 @@ new class extends Component
                             </flux:table.cell>
 
                             <flux:table.cell>
-                                {{ Number::currency($item->unit_price, 'EUR') }}
+                                {{ money($item->unit_price, 'EUR') }}
                             </flux:table.cell>
 
                             <flux:table.cell>
-                                {{ Number::currency($item->total_price, 'EUR') }}
+                                {{ money($item->total_price, 'EUR') }}
                             </flux:table.cell>
 
                         </flux:table.row>
@@ -324,7 +324,7 @@ new class extends Component
                     >
                         <meta itemprop="price" content="{{ number_format($order->total_amount / 100, 2, '.', '') }}">
                         <meta itemprop="priceCurrency" content="EUR">
-                        {{ Number::currency($order->total_amount, 'EUR') }}
+                        {{ money($order->total_amount, 'EUR') }}
                     </div>
                 </div>
                 <div class="flex gap-4">
