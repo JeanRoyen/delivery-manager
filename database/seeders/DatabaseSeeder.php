@@ -4,10 +4,13 @@ namespace Database\Seeders;
 
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,40 +21,54 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'first_name' => 'Élodie',
-            'last_name' => 'Lambert',
-            'email' => 'elodie.lambert@delivery-manager.test',
-            'password' => 'password',
-            'isAdmin' => 1,
-            'locale' => 'fr',
-        ]);
+        $password = 'password';
 
-        User::factory()->create([
-            'first_name' => 'Nicolas',
-            'last_name' => 'Dubois',
-            'email' => 'nicolas.dubois@delivery-manager.test',
-            'password' => 'password',
-            'locale' => 'fr',
-        ]);
+        $employees = [
+            ['first_name' => 'Élodie', 'last_name' => 'Lambert', 'email' => 'elodie.lambert@delivery-manager.test', 'isAdmin' => true, 'locale' => 'fr'],
+            ['first_name' => 'Nicolas', 'last_name' => 'Dubois', 'email' => 'nicolas.dubois@delivery-manager.test', 'isAdmin' => false, 'locale' => 'fr'],
+            ['first_name' => 'Anouk', 'last_name' => 'Peeters', 'email' => 'anouk.peeters@delivery-manager.test', 'isAdmin' => false, 'locale' => 'nl'],
+            ['first_name' => 'Thomas', 'last_name' => 'Janssens', 'email' => 'thomas.janssens@delivery-manager.test', 'isAdmin' => false, 'locale' => 'nl'],
+        ];
 
-        User::factory()->create([
-            'first_name' => 'Anouk',
-            'last_name' => 'Peeters',
-            'email' => 'anouk.peeters@delivery-manager.test',
-            'password' => 'password',
-            'locale' => 'nl',
-        ]);
+        foreach ($employees as $employee) {
+            $user = User::query()->firstOrNew(['email' => $employee['email']]);
 
-        User::factory()->create([
-            'first_name' => 'Thomas',
-            'last_name' => 'Janssens',
-            'email' => 'thomas.janssens@delivery-manager.test',
-            'password' => 'password',
-            'locale' => 'nl',
-        ]);
+            $user->forceFill([
+                ...$employee,
+                'password' => Hash::make($password),
+                'email_verified_at' => now(),
+            ])->save();
+        }
 
-        $customers = Customer::factory()->count(200)->create();
+        $firstNames = ['Sophie', 'Lucas', 'Emma', 'Hugo', 'Camille', 'Louis', 'Julie', 'Arthur', 'Chloé', 'Nathan', 'Sarah', 'Maxime'];
+        $lastNames = ['Martin', 'Bernard', 'Dubois', 'Lambert', 'Leroy'];
+        $streets = ['rue de la Station', 'avenue des Tilleuls', 'rue du Centre', 'chaussée de Liège', 'rue des Jardins', 'avenue du Parc'];
+        $cities = [
+            ['postal_code' => '4000', 'name' => 'Liège'],
+            ['postal_code' => '4020', 'name' => 'Liège'],
+            ['postal_code' => '4100', 'name' => 'Seraing'],
+            ['postal_code' => '4430', 'name' => 'Ans'],
+            ['postal_code' => '4600', 'name' => 'Visé'],
+            ['postal_code' => '4800', 'name' => 'Verviers'],
+        ];
+
+        $customers = collect();
+
+        foreach (range(0, 59) as $index) {
+            $firstName = $firstNames[$index % count($firstNames)];
+            $lastName = $lastNames[intdiv($index, count($firstNames))];
+            $city = $cities[$index % count($cities)];
+            $email = Str::slug($firstName.'.'.$lastName, '.').'@example.test';
+
+            $customers->push(Customer::query()->updateOrCreate(
+                ['email' => $email],
+                [
+                    'name' => $firstName.' '.$lastName,
+                    'address' => ($index + 1).', '.$streets[$index % count($streets)].', '.$city['postal_code'].' '.$city['name'],
+                    'phone' => sprintf('04%02d %02d %02d %02d', 70 + ($index % 10), 10 + ($index % 80), 20 + ($index % 70), 30 + ($index % 60)),
+                ],
+            ));
+        }
 
         $products = collect([
             ['name' => 'Canapé Oslo 3 places', 'description' => 'Canapé trois places en tissu gris clair avec pieds en chêne.', 'price' => 89900],
@@ -79,23 +96,38 @@ class DatabaseSeeder extends Seeder
             $product,
         ));
 
-        $orders = Order::factory()
-            ->count(200)
-            ->recycle($customers)
-            ->sequence(
-                ['state' => 'pending'],
-                ['state' => 'preparing'],
-                ['state' => 'delivering'],
-                ['state' => 'delivered'],
-                ['state' => 'failed'],
-            )
-            ->create();
+        $states = ['pending', 'preparing', 'delivering', 'delivered', 'failed'];
 
-        foreach ($orders as $order) {
+        foreach (range(1, 200) as $index) {
+            $state = $states[($index - 1) % count($states)];
+            $createdAt = now()
+                ->subDays(60 - ($index % 61))
+                ->setTime(8 + ($index % 10), ($index * 7) % 60);
+
+            $order = Order::query()->firstOrNew([
+                'code' => sprintf('%08d', $index),
+            ]);
+
+            $order->forceFill([
+                'customer_id' => $customers[($index - 1) % $customers->count()]->id,
+                'total_amount' => 0,
+                'state' => $state,
+                'incident_message' => $state === 'failed' ? 'Retard causé par un incident logistique lors du transport.' : null,
+                'created_at' => $createdAt,
+                'updated_at' => $createdAt,
+            ])->save();
+
+            OrderItem::query()
+                ->withTrashed()
+                ->where('order_id', $order->id)
+                ->forceDelete();
+
             $total = 0;
+            $itemCount = 2 + (($index - 1) % 5);
 
-            foreach ($products->random(random_int(2, 6)) as $product) {
-                $quantity = random_int(1, 4);
+            foreach (range(0, $itemCount - 1) as $itemIndex) {
+                $product = $products[(($index - 1) * 3 + $itemIndex) % $products->count()];
+                $quantity = 1 + (($index + $itemIndex) % 4);
                 $lineTotal = $product->price * $quantity;
 
                 $order->items()->create([
