@@ -42,7 +42,6 @@ new class extends Component {
 
 <flux:navbar
     aria-label="{{ __('order.status_navigation') }}"
-    title="{{ __('order.status_navigation') }}"
 >
     <h2 class="sr-only">{{ __('order.status_navigation') }}</h2>
 

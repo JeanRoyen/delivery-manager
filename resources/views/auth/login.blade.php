@@ -44,7 +44,6 @@
 
                 <flux:navmenu
                     aria-label="{{ __('sidebar.language_navigation') }}"
-                    title="{{ __('sidebar.language_navigation') }}"
                 >
                     <h2 class="sr-only">{{ __('sidebar.language_navigation') }}</h2>
 

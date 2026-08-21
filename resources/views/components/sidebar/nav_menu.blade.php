@@ -9,7 +9,6 @@
 
 <flux:sidebar.nav
     aria-label="{{ __('sidebar.main_navigation') }}"
-    title="{{ __('sidebar.main_navigation') }}"
 >
     <h2 class="sr-only">{{ __('sidebar.main_navigation') }}</h2>
 

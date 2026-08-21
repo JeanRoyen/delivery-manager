@@ -30,10 +30,7 @@
     />
 </flux:header>
 
-<flux:main
-    aria-label="{{ __('sidebar.main_content') }}"
-    title="{{ __('sidebar.main_content') }}"
->
+<flux:main aria-label="{{ __('sidebar.main_content') }}">
     @persist('toast')
     <flux:toast position="top end" />
     @endpersist

@@ -22,7 +22,6 @@ new class extends Component
 
         <flux:navmenu
             aria-label="{{ __('sidebar.user_navigation') }}"
-            title="{{ __('sidebar.user_navigation') }}"
         >
             <h2 class="sr-only">{{ __('sidebar.user_navigation') }}</h2>
 
