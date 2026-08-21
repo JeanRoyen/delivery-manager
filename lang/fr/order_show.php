@@ -32,6 +32,7 @@ return [
         'name' => 'Produit',
         'quantity' => 'Quantité',
         'price' => 'Prix',
+        'total' => 'Total',
     ],
 
     'general' => [

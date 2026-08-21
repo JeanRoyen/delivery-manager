@@ -222,7 +222,7 @@ new class extends Component
                     <flux:table.column>{{ __('order_show.product.name') }}</flux:table.column>
                     <flux:table.column>{{ __('order_show.product.quantity') }}</flux:table.column>
                     <flux:table.column>{{ __('order_show.product.price') }}</flux:table.column>
-                    <flux:table.column>{{ __('order_show.general.actions') }}</flux:table.column>
+                    <flux:table.column>{{ __('order_show.product.total') }}</flux:table.column>
                 </flux:table.columns>
 
                 <flux:table.rows>
