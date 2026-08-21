@@ -143,8 +143,24 @@ new class extends Component
                     </label>
                 </li>
             @empty
-                <li class="px-3 py-2 text-sm text-gray-400">
-                    {{ __('form.no_customer_found') }}
+                <li class="m-2 rounded-lg border border-blue-200 bg-blue-50 p-4 text-center">
+                    <div class="mx-auto mb-3 flex size-10 items-center justify-center rounded-full bg-blue-100 text-blue-700">
+                        <flux:icon.user class="size-5" />
+                    </div>
+
+                    <p class="mb-3 text-sm font-medium text-gray-800">
+                        {{ __('form.customer_not_found_callout') }}
+                    </p>
+
+                    <flux:button
+                        variant="primary"
+                        color="green"
+                        icon="plus"
+                        :href="route('customer.create')"
+                        wire:navigate
+                    >
+                        {{ __('form.create_customer_now') }}
+                    </flux:button>
                 </li>
             @endforelse
         </ul>

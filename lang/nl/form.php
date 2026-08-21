@@ -30,6 +30,8 @@ return [
     'search' => 'Zoeken...',
     'clear_customer_search' => 'Selectie wissen',
     'no_customer_found' => 'Geen klant gevonden',
+    'customer_not_found_callout' => 'Kunt u uw klant niet vinden?',
+    'create_customer_now' => 'Maak deze nu aan!',
     'add_order_items_description' => 'Voeg artikelen toe en pas de aantallen aan.',
     'select_product' => 'Selecteer een artikel',
     'add_item' => 'Artikel toevoegen',

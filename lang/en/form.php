@@ -30,6 +30,8 @@ return [
     'search' => 'Search...',
     'clear_customer_search' => 'Clear selection',
     'no_customer_found' => 'No customer found',
+    'customer_not_found_callout' => 'Cannot find your customer?',
+    'create_customer_now' => 'Create them now!',
     'add_order_items_description' => 'Add items and adjust their quantities.',
     'select_product' => 'Select an item',
     'add_item' => 'Add an item',

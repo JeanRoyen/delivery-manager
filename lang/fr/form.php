@@ -30,6 +30,8 @@ return [
     'search' => 'Rechercher...',
     'clear_customer_search' => 'Effacer la sélection',
     'no_customer_found' => 'Aucun client trouvé',
+    'customer_not_found_callout' => 'Vous ne trouvez pas votre client ?',
+    'create_customer_now' => 'Créez-le tout de suite !',
     'add_order_items_description' => 'Ajoutez les articles et ajustez leurs quantités.',
     'select_product' => 'Sélectionner un article',
     'add_item' => 'Ajouter un article',
