@@ -2,6 +2,8 @@
 
 return [
     'login' => 'Aanmelden',
+    'forgot_password' => 'Wachtwoord vergeten',
+    'reset_password' => 'Wachtwoord opnieuw instellen',
     'dashboard' => 'Dashboard',
 
     'customer_index' => 'Klanten',

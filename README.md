@@ -182,7 +182,7 @@ La commande `composer run dev` lance l’application Laravel, Vite, le worker de
 
 Le seeder fournit un jeu de démonstration cohérent et reproductible :
 
-- 4 comptes employés ;
+- 5 comptes employés ;
 - 60 clients ;
 - 20 meubles avec des prix cohérents ;
 - 200 commandes réparties entre les différents statuts.

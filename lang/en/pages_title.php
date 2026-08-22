@@ -2,6 +2,8 @@
 
 return [
     'login' => 'Login',
+    'forgot_password' => 'Forgot password',
+    'reset_password' => 'Reset password',
     'dashboard' => 'Dashboard',
 
     'customer_index' => 'Customers',

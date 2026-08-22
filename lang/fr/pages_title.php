@@ -2,6 +2,8 @@
 
 return [
     'login' => 'Connexion',
+    'forgot_password' => 'Mot de passe oublié',
+    'reset_password' => 'Réinitialiser le mot de passe',
     'dashboard' => 'Tableau de bord',
 
     'customer_index' => 'Clients',
