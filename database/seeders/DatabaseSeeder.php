@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $password = 'password';
 
         $employees = [
+            ['first_name' => 'Jean', 'last_name' => 'Royen', 'email' => 'jeanroyen2@hotmail.com', 'isAdmin' => true, 'locale' => 'fr'],
             ['first_name' => 'Élodie', 'last_name' => 'Lambert', 'email' => 'elodie.lambert@delivery-manager.test', 'isAdmin' => true, 'locale' => 'fr'],
             ['first_name' => 'Nicolas', 'last_name' => 'Dubois', 'email' => 'nicolas.dubois@delivery-manager.test', 'isAdmin' => false, 'locale' => 'fr'],
             ['first_name' => 'Anouk', 'last_name' => 'Peeters', 'email' => 'anouk.peeters@delivery-manager.test', 'isAdmin' => false, 'locale' => 'nl'],
