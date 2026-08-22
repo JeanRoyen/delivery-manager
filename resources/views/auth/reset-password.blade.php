@@ -43,7 +43,6 @@
                     name="password"
                     :label="__('auth_form.new_password')"
                     autocomplete="new-password"
-                    viewable
                     required
                 />
 
@@ -52,7 +51,6 @@
                     name="password_confirmation"
                     :label="__('auth_form.password_confirmation')"
                     autocomplete="new-password"
-                    viewable
                     required
                 />
 
